@@ -1,16 +1,134 @@
-# arkamaya_landing_page
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[master (root-commit) 96142ff] landing page dari dea
+ 132 files changed, 5301 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 .metadata
+ create mode 100644 README.md
+ create mode 100644 analysis_options.yaml
+ create mode 100644 android/.gitignore
+ create mode 100644 android/app/build.gradle
+ create mode 100644 android/app/src/debug/AndroidManifest.xml
+ create mode 100644 android/app/src/main/AndroidManifest.xml
+ create mode 100644 android/app/src/main/kotlin/com/example/arkamaya_landing_page/MainActivity.kt
+ create mode 100644 android/app/src/main/res/drawable-v21/launch_background.xml
+ create mode 100644 android/app/src/main/res/drawable/launch_background.xml
+ create mode 100644 android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+ create mode 100644 android/app/src/main/res/values-night/styles.xml
+ create mode 100644 android/app/src/main/res/values/styles.xml
+ create mode 100644 android/app/src/profile/AndroidManifest.xml
+ create mode 100644 android/build.gradle
+ create mode 100644 android/gradle.properties
+ create mode 100644 android/gradle/wrapper/gradle-wrapper.properties
+ create mode 100644 android/settings.gradle
+ create mode 100644 ios/.gitignore
+ create mode 100644 ios/Flutter/AppFrameworkInfo.plist
+ create mode 100644 ios/Flutter/Debug.xcconfig
+ create mode 100644 ios/Flutter/Release.xcconfig
+ create mode 100644 ios/Runner.xcodeproj/project.pbxproj
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ create mode 100644 ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+ create mode 100644 ios/Runner.xcworkspace/contents.xcworkspacedata
+ create mode 100644 ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+ create mode 100644 ios/Runner/AppDelegate.swift
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png
+ create mode 100644 ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md
+ create mode 100644 ios/Runner/Base.lproj/LaunchScreen.storyboard
+ create mode 100644 ios/Runner/Base.lproj/Main.storyboard
+ create mode 100644 ios/Runner/Info.plist
+ create mode 100644 ios/Runner/Runner-Bridging-Header.h
+ create mode 100644 ios/RunnerTests/RunnerTests.swift
+ create mode 100644 lib/app.dart
+ create mode 100644 lib/main.dart
+ create mode 100644 lib/viewmodels/landing_page_viewmodel.dart
+ create mode 100644 lib/views/landing_page.dart
+ create mode 100644 lib/widgets/profile_sidebar.dart
+ create mode 100644 linux/.gitignore
+ create mode 100644 linux/CMakeLists.txt
+ create mode 100644 linux/flutter/CMakeLists.txt
+ create mode 100644 linux/flutter/generated_plugin_registrant.cc
+ create mode 100644 linux/flutter/generated_plugin_registrant.h
+ create mode 100644 linux/flutter/generated_plugins.cmake
+ create mode 100644 linux/main.cc
+ create mode 100644 linux/my_application.cc
+ create mode 100644 linux/my_application.h
+ create mode 100644 macos/.gitignore
+ create mode 100644 macos/Flutter/Flutter-Debug.xcconfig
+ create mode 100644 macos/Flutter/Flutter-Release.xcconfig
+ create mode 100644 macos/Flutter/GeneratedPluginRegistrant.swift
+ create mode 100644 macos/Runner.xcodeproj/project.pbxproj
+ create mode 100644 macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme
+ create mode 100644 macos/Runner.xcworkspace/contents.xcworkspacedata
+ create mode 100644 macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+ create mode 100644 macos/Runner/AppDelegate.swift
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png
+ create mode 100644 macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png
+ create mode 100644 macos/Runner/Base.lproj/MainMenu.xib
+ create mode 100644 macos/Runner/Configs/AppInfo.xcconfig
+ create mode 100644 macos/Runner/Configs/Debug.xcconfig
+ create mode 100644 macos/Runner/Configs/Release.xcconfig
+ create mode 100644 macos/Runner/Configs/Warnings.xcconfig
+ create mode 100644 macos/Runner/DebugProfile.entitlements
+ create mode 100644 macos/Runner/Info.plist
+ create mode 100644 macos/Runner/MainFlutterWindow.swift
+ create mode 100644 macos/Runner/Release.entitlements
+ create mode 100644 macos/RunnerTests/RunnerTests.swift
+ create mode 100644 pubspec.lock
+ create mode 100644 pubspec.yaml
+ create mode 100644 test/widget_test.dart
+ create mode 100644 web/favicon.png
+ create mode 100644 web/icons/Icon-192.png
+ create mode 100644 web/icons/Icon-512.png
+ create mode 100644 web/icons/Icon-maskable-192.png
+ create mode 100644 web/icons/Icon-maskable-512.png
+ create mode 100644 web/index.html
+ create mode 100644 web/manifest.json
+ create mode 100644 windows/.gitignore
+ create mode 100644 windows/CMakeLists.txt
+ create mode 100644 windows/flutter/CMakeLists.txt
+ create mode 100644 windows/flutter/generated_plugin_registrant.cc
+ create mode 100644 windows/flutter/generated_plugin_registrant.h
+ create mode 100644 windows/flutter/generated_plugins.cmake
+ create mode 100644 windows/runner/CMakeLists.txt
+ create mode 100644 windows/runner/Runner.rc
+ create mode 100644 windows/runner/flutter_window.cpp
+ create mode 100644 windows/runner/flutter_window.h
+ create mode 100644 windows/runner/main.cpp
+ create mode 100644 windows/runner/resource.h
+ create mode 100644 windows/runner/resources/app_icon.ico
+ create mode 100644 windows/runner/runner.exe.manifest
+ create mode 100644 windows/runner/utils.cpp
+ create mode 100644 windows/runner/utils.h
+ create mode 100644 windows/runner/win32_window.cpp
+ create mode 100644 windows/runner/win32_window.h
