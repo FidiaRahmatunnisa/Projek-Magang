@@ -1,2 +1,2 @@
-[dhea 83fafb6] landing page pertama dari dea
- 1 file changed, 2 insertions(+), 2 deletions(-)
+[dhea b10092d] landing page pertama dari dea
+ 1 file changed, 1 insertion(+), 1 deletion(-)
