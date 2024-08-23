@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 // import 'package:landing_page/ui/views/startup/startup_view.dart';
@@ -59,165 +61,176 @@ class HomeView extends StackedView<HomeViewModel> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(10),
-                child: Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.all(10),
-                  // alignment: Alignment.centerLeft,
-                  decoration: BoxDecoration(
-                    color: Colors.orange[400],
-                    borderRadius: BorderRadius.circular(20.0),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(
-                            0.2), // Warna bayangan dengan transparansi
-                        offset: Offset(0,
-                            4), // Jarak bayangan dari kotak (horizontal, vertical)
-                        blurRadius: 6, // Radius blur bayangan
-                        spreadRadius: 2, // Jarak penyebaran bayangan
+                // box navbar yang berwarna orange itu
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    return Container(
+                      width: double.infinity,
+                      padding: EdgeInsets.all(10),
+                      // alignment: Alignment.centerLeft,
+                      decoration: BoxDecoration(
+                        color: Colors.orange[400],
+                        borderRadius: BorderRadius.circular(20.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(
+                                0.2), // Warna bayangan dengan transparansi
+                            offset: Offset(0,
+                                4), // Jarak bayangan dari kotak (horizontal, vertical)
+                            blurRadius: 6, // Radius blur bayangan
+                            spreadRadius: 2, // Jarak penyebaran bayangan
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
 
-                  //bagian navigasi
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          'assets/logo.png',
-                          height: 30,
-                          // color: Colors.white,
-                        ),
-                        SizedBox(width: 20),
-                        Image.asset(
-                          'assets/bendera.png',
-                          height: 10,
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Text(
-                          'EN',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          'Solutions',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          'Why Arkamaya',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          'Resource',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 30,
-                        ),
-                        Text(
-                          'Company',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                        SizedBox(width: 350),
-                        Container(
-                          width: 150,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(
-                                    0.2), // Warna bayangan dengan transparansi
-                                offset: Offset(0,
-                                    4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                blurRadius: 6, // Radius blur bayangan
-                                spreadRadius: 2, // Jarak penyebaran bayangan
+                      //bagian navigasi
+                      child: Padding(
+                        padding: EdgeInsets.all(5),
+                        child: Row(
+                          children: [
+                            Image.asset(
+                              'assets/logo.png',
+                              height: 30,
+                              // color: Colors.white,
+                            ),
+                            SizedBox(width: 20),
+                            Image.asset(
+                              'assets/bendera.png',
+                              height: 10,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              'EN',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
                               ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Book a Free Demo',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.black,
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              'Solutions',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              'Why Arkamaya',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              'Resource',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 30,
+                            ),
+                            Text(
+                              'Company',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                              ),
+                            ),
+                            SizedBox(width: 350),
+                            LayoutBuilder(builder: (context, constraints) {
+                              return Container(
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(
+                                          0.2), // Warna bayangan dengan transparansi
+                                      offset: Offset(0,
+                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
+                                      blurRadius: 6, // Radius blur bayangan
+                                      spreadRadius:
+                                          2, // Jarak penyebaran bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Book a Free Demo',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 20),
-                        Container(
-                          width: 150,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(20.0),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(
-                                    0.2), // Warna bayangan dengan transparansi
-                                offset: Offset(0,
-                                    4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                blurRadius: 6, // Radius blur bayangan
-                                spreadRadius: 2, // Jarak penyebaran bayangan
-                              ),
-                            ],
-                          ),
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Contact Sales',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14,
-                                    color: Colors.white,
+                              );
+                            }),
+                            SizedBox(width: 20),
+                            LayoutBuilder(builder: (context, constraints) {
+                              return Container(
+                                width: 150,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(
+                                          0.2), // Warna bayangan dengan transparansi
+                                      offset: Offset(0,
+                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
+                                      blurRadius: 6, // Radius blur bayangan
+                                      spreadRadius:
+                                          2, // Jarak penyebaran bayangan
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        'Contact Sales',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
+                              );
+                            }),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  },
                 ),
               ),
 
-              // bagian backgound -sampai- garis bergelombang
+              // bagian backgound dan isi-isi lainnya
               SizedBox(
                 child: Column(
                   // crossAxisAlignment: CrossAxisAlignment.start,
@@ -226,117 +239,151 @@ class HomeView extends StackedView<HomeViewModel> {
                       children: [
                         Stack(
                           children: [
-                            Container(
-                              padding: EdgeInsets.only(top: 60, left: 50),
-                              width: 600,
-                              height: 400,
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Peace Of Mind is Just a Few Click away!',
-                                    style: TextStyle(
-                                      fontSize: 40,
-                                      fontWeight: FontWeight.bold,
+                            LayoutBuilder(builder: (context, constraints) {
+                              return Container(
+                                padding: EdgeInsets.only(top: 60, left: 50),
+                                width: constraints.maxWidth < 600
+                                    ? constraints.maxWidth
+                                    : 600,
+                                height: 400,
+                                child: Column(
+                                  children: [
+                                    // title tulisan besar
+                                    Text(
+                                      'Peace Of Mind is Just a Few Click away!',
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 10,
-                                  ),
-                                  Text(
-                                    'Supercharge your HR team & empower your people with powerful HR software',
-                                    style: TextStyle(
-                                      fontSize: 20,
+                                    SizedBox(
+                                      height: 10,
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 60,
-                                  ),
-                                  Container(
-                                    width: 550,
-                                    height: 50,
-                                    padding: const EdgeInsets.only(
-                                      left: 40,
+                                    // kata-kata kecil dibawah title
+                                    Text(
+                                      'Supercharge your HR team & empower your people with powerful HR software',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                      ),
                                     ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20.0),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(
-                                              0.2), // Warna bayangan dengan transparansi
-                                          offset: Offset(0,
-                                              4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                          blurRadius: 6, // Radius blur bayangan
-                                          spreadRadius:
-                                              2, // Jarak penyebaran bayangan
+                                    SizedBox(
+                                      height: 60,
+                                    ),
+                                    // container yang membungkus input email dan button orange trial
+                                    LayoutBuilder(
+                                        builder: (context, constraints) {
+                                      return Container(
+                                        // width: 550,
+                                        width: constraints.maxWidth < 550
+                                            ? constraints.maxWidth
+                                            : 550,
+                                        height: 50,
+                                        padding: const EdgeInsets.only(
+                                          left: 40,
                                         ),
-                                      ],
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          child: Padding(
-                                            padding: EdgeInsets.only(left: 60),
-                                            child: Text(
-                                              'Enter your email address here',
-                                              style: TextStyle(
-                                                fontSize: 15,
-                                                color: Colors.black45,
-                                              ),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(20.0),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.black.withOpacity(
+                                                  0.2), // Warna bayangan dengan transparansi
+                                              offset: Offset(0,
+                                                  4), // Jarak bayangan dari kotak (horizontal, vertical)
+                                              blurRadius:
+                                                  6, // Radius blur bayangan
+                                              spreadRadius:
+                                                  2, // Jarak penyebaran bayangan
                                             ),
-                                          ),
+                                          ],
                                         ),
-                                        Container(
-                                          width: 140,
-                                          height: 40,
-                                          padding: EdgeInsets.only(left: 15),
-                                          decoration: BoxDecoration(
-                                            color: Colors.orange,
-                                            borderRadius:
-                                                BorderRadius.circular(20.0),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black.withOpacity(
-                                                    0.2), // Warna bayangan dengan transparansi
-                                                offset: Offset(0,
-                                                    4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                                blurRadius:
-                                                    6, // Radius blur bayangan
-                                                spreadRadius:
-                                                    2, // Jarak penyebaran bayangan
-                                              ),
-                                            ],
-                                          ),
-                                          child: Row(
-                                            children: [
-                                              Center(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            // box email warna putih
+                                            LayoutBuilder(builder:
+                                                (context, constraints) {
+                                              return Container(
+                                                child: Padding(
+                                                  padding:
+                                                      EdgeInsets.only(left: 60),
+                                                  child: Text(
+                                                    'Enter your email address here',
+                                                    style: TextStyle(
+                                                      fontSize: 15,
+                                                      color: Colors.black45,
+                                                    ),
+                                                  ),
+                                                ),
+                                              );
+                                            }),
+                                            // Box orange trial
+                                            LayoutBuilder(builder:
+                                                (context, constraints) {
+                                              return Container(
+                                                // width: 140,
+                                                width:
+                                                    constraints.maxWidth < 140
+                                                        ? constraints.maxWidth
+                                                        : 140,
+                                                height: 40,
+                                                padding:
+                                                    EdgeInsets.only(left: 15),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20.0),
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      color: Colors.black
+                                                          .withOpacity(
+                                                              0.2), // Warna bayangan dengan transparansi
+                                                      offset: Offset(0,
+                                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
+                                                      blurRadius:
+                                                          6, // Radius blur bayangan
+                                                      spreadRadius:
+                                                          2, // Jarak penyebaran bayangan
+                                                    ),
+                                                  ],
+                                                ),
+                                                child: Row(
                                                   children: [
-                                                    Text(
-                                                      '30-Day Free Trial',
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        fontSize: 14,
-                                                        color: Colors.white,
+                                                    Center(
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            '30-Day Free Trial',
+                                                            style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize: 14,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                          ),
+                                                        ],
                                                       ),
                                                     ),
                                                   ],
                                                 ),
-                                              ),
-                                            ],
-                                          ),
+                                              );
+                                            }),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                                      );
+                                    }),
+                                  ],
+                                ),
+                              );
+                            }),
                           ],
                         ),
                       ],
@@ -349,9 +396,10 @@ class HomeView extends StackedView<HomeViewModel> {
                     ),
 
                     SizedBox(
-                      height: 150,
+                      height: 200,
                     ),
 
+                    // teks 'we have ..'
                     Text(
                       'We have 5 million + active users worlwide',
                       style: TextStyle(
@@ -365,6 +413,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       height: 40,
                     ),
 
+                    // teks 'here are'
                     Text(
                       'Here are some of our clients',
                       style: TextStyle(
@@ -375,15 +424,15 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     //bagian scroll view
                     Container(
-                      height: 300,
+                      height: 200,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         controller: autoScrollController.scrollController,
                         child: Row(
-                          children: List.generate(6, (index) {
+                          children: List.generate(4, (index) {
                             final List<String> imagePaths = [
-                              'assets/david.png',
-                              'assets/cs.png',
+                              // 'assets/david.png',
+                              // 'assets/cs.png',
                               'assets/dlhk.png',
                               'assets/isa.png',
                               'assets/nec.png',
@@ -392,7 +441,8 @@ class HomeView extends StackedView<HomeViewModel> {
                             return Padding(
                               padding: const EdgeInsets.all(8),
                               child: Card(
-                                elevation: 6,
+                                elevation: 4,
+                                color: Colors.white,
                                 child: Container(
                                   width: 100,
                                   height: 100,
@@ -417,38 +467,249 @@ class HomeView extends StackedView<HomeViewModel> {
                       height: 10,
                     ),
 
-                    // bagian melengkung
-                    LayoutBuilder(
-                      builder: ((context, constraints) {
-                        // return ClipPath(
-                          // clipper: MountainClipper(),
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Colors.orange[400],
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(100.0),
-                                topRight: Radius.circular(200.0),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.2), // Warna bayangan dengan transparansi
-                                  offset: Offset(0, 4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                  blurRadius: 6, // Radius blur bayangan
-                                  spreadRadius: 2, // Jarak penyebaran bayangan
-                                ),
-                              ],
+                    Stack(
+                      children: [
+                        // bagian background gradien
+                        Column(
+                          children: [
+                            // bagian melengkung keatas
+                            LayoutBuilder(
+                              builder: ((context, constraints) {
+                                return ClipPath(
+                                  clipper: MountainClipper(),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      // color: Colors.orange[400],
+                                      gradient: LinearGradient(
+                                        colors: [
+                                          Colors.white!,
+                                          Colors.orange[400]!
+                                        ],
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(200.0),
+                                        topRight: Radius.circular(200.0),
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(
+                                              0.2), // Warna bayangan dengan transparansi
+                                          offset: const Offset(0,
+                                              4), // Jarak bayangan dari kotak (horizontal, vertical)
+                                          blurRadius: 6, // Radius blur bayangan
+                                          spreadRadius:
+                                              2, // Jarak penyebaran bayangan
+                                        ),
+                                      ],
+                                    ),
+                                    // width: double.infinity,
+                                    width: constraints.maxWidth < 1500
+                                        ? constraints.maxWidth
+                                        : 1500,
+                                    height: 400,
+                                  ),
+                                );
+                              }),
                             ),
-                            // width: double.infinity,
-                            width: constraints.maxWidth < 1500 ? constraints.maxWidth : 1500,
-                            height: 500,
-                          );
-                        // );
-                      }),
+
+                            // bagian lengkung kebawah
+                            LayoutBuilder(builder: (context, constraints) {
+                              return Container(
+                                width: 1500,
+                                height: 400,
+                                decoration: BoxDecoration(
+                                  // color: Colors.orange[700],
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Colors.orange[400]!,
+                                      Colors.white!
+                                    ],
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(50),
+                                    bottomRight: Radius.circular(50),
+                                  ),
+                                ),
+                              );
+                            }),
+
+                            //background berwarna putih hitam gradasi
+                              Container(
+                                  width: 1400,
+                                  height: 400,
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.white,
+                                        Colors.black,
+                                        Colors.white,
+                                      ],
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter, 
+                                      ),
+                                    ),
+                                ),
+                          ],
+                        ),
+
+                        // bingkai foto lingkaran, oval juga bisa
+                        //  ClipOval(
+                        //   child: Image.asset(
+                        //     'assets/rapat.jpg', // Path foto Anda
+                        //     width: 900.0, // Ukuran gambar lebih kecil dari background
+                        //     height: 600.0,
+                        //     fit: BoxFit.cover, // Mengisi ruang dan menjaga aspek rasio
+                        //   ),
+                        // ),
+
+                        // bagian image background gradien white orange-white-
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                          return Expanded(
+                            child: Container(
+                            padding: EdgeInsets.only(top: 200),
+                            width: 1500,
+                            height: 1000,
+                            child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // box gambar yang bawah dari gambar lengkung keatas, diatasnya buram
+                              Container(
+                                width: constraints.maxWidth < 500 ? constraints.maxWidth :500,
+                                height: 300,
+                                child: Column(
+                                  children: [
+                                    Image.asset(
+                                      'assets/logo.png',
+                                      width: 400,
+                                      ),
+                                    SizedBox(height: 100,),
+                                   const Text(
+                                      // 'OrangeHRM provides a world-class HRIS experience and offers everything you \nand your team need to be the HR heroes you know you are. \nFrom talent management to culture, to people management and compensation, \nOrangeHRM helps thousands of businesses around the world be great places \nto work.',
+                                        '( ini box deskripsi )',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 15,
+                                          
+                                        ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              SizedBox(height: 100,),
+                              
+                              // box video youtube
+                              Container(
+                                width: 500,
+                                height: 300,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.2),
+                                      offset: Offset(0, 4),
+                                      blurRadius: 6,
+                                      spreadRadius: 2,
+                                    )
+                                  ]
+                                ),
+                                child: Text(
+                                  'ini box video'
+                                ),
+                              ),
+
+                              SizedBox(height: 100,),
+
+                              // bagian lengkung kiri yg memakan background hitam
+                              // Container(
+                              //   width: 1500,
+                              //   height: 100,
+                              //   decoration: BoxDecoration(
+                              //     color: Colors.white,
+                              //     borderRadius: BorderRadius.only(
+                              //     topLeft: Radius.circular(200),
+                              //     // topRight: Radius.circular(200),
+                              //     ),
+                              //  ),
+                              // ),
+                             
+                             ],
+                            ),
+                          )
+                         ); 
+                        }),
+                      ],
                     ),
 
-                    SizedBox(
-                      height: 20,
+                    Container(
+                      width: 1500,
+                      height: 500,
+                      padding: EdgeInsets.all(110),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          ClipRRect(
+                            // borderRadius: BorderRadius.circular(150),
+                            child:Image.asset(
+                              'assets/rapat.jpg',
+                              width: 500,
+                              height: 500,
+                            ),
+                          ),
+                          Container(
+                            width: 500,
+                            height: 500,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            child: const Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(top: 20),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'People Management',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 90),
+                                        child: Text(
+                                            '(ini deskripsinya)',
+                                            style: TextStyle(
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        
+                                      ),
+                                      
+                                    ],
+                                  ), 
+                             
+                                  ),
+
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
+
+                    SizedBox(height: 20,),
                   ],
                 ),
               ),
@@ -471,9 +732,9 @@ class MountainClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path = Path();
-    path.lineTo(0, size.height * 0.8); // Mulai dari kiri bawah
-    path.lineTo(size.width * 0.5, size.height * 0.1); // Puncak gunung
-    path.lineTo(size.width, size.height * 0.8); // Kanan bawah
+    path.lineTo(0, size.height); // Mulai dari kiri bawah
+    path.lineTo(size.width, size.height); // Puncak gunung
+    path.lineTo(size.width, 0); // Kanan bawah
     path.close(); // Tutup path untuk membuat bentuk
     return path;
   }
