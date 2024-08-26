@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:arkamaya_landing_page/widgets/profile_sidebar.dart'; // Import widget ProfileSidebar
+import 'package:arkamaya_landing_page/widgets/profile_sidebar.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -18,13 +17,13 @@ class LandingPage extends StatelessWidget {
             child: Column(
               children: [
                 HeaderSection(),
+                ModuleNavigationBar(), // Tambahkan bar navigasi modul di sini
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        HeroSection(),
-                        FeaturesSection(),
+                        DashboardCards(),
                         BenefitsSection(),
                         TestimonialsSection(),
                         FooterSection(),
@@ -41,33 +40,204 @@ class LandingPage extends StatelessWidget {
   }
 }
 
+class ModuleNavigationBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.orange[100],
+      padding: EdgeInsets.symmetric(vertical: 15),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            ModuleButton(label: 'Home', icon: Icons.home, isActive: false),
+            ModuleButton(label: 'Employee List', icon: Icons.people),
+            ModuleButton(label: 'Directory', icon: Icons.folder),
+            ModuleButton(label: 'Buzz', icon: Icons.notifications),
+            ModuleButton(label: 'Announcements', icon: Icons.announcement),
+            ModuleButton(
+                label: 'Dashboard', icon: Icons.dashboard, isActive: true),
+            ModuleButton(label: 'More', icon: Icons.more_horiz),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class ModuleButton extends StatelessWidget {
+  final String label;
+  final IconData icon;
+  final bool isActive;
+
+  ModuleButton(
+      {required this.label, required this.icon, this.isActive = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: isActive ? Colors.orange : Colors.white,
+          borderRadius: BorderRadius.circular(20), // Ujung melengkung
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              offset: Offset(0, 2),
+              blurRadius: 4,
+            ),
+          ],
+        ),
+        child: TextButton.icon(
+          style: TextButton.styleFrom(
+            foregroundColor: isActive ? Colors.white : Colors.black,
+            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+            backgroundColor:
+                Colors.transparent, // Menghilangkan background bawaan
+          ),
+          icon: Icon(icon, size: 20),
+          label: Text(label),
+          onPressed: () {
+          
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class DashboardCards extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: GridView.count(
+        crossAxisCount: 3,
+        shrinkWrap: true,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 2, // Rasio aspek untuk ukuran card
+        physics:
+            NeverScrollableScrollPhysics(), // Nonaktifkan scroll di GridView
+        children: [
+          DashboardCard(
+            title: 'My Actions',
+            subtitle: 'No Pending Actions to Perform',
+            icon: Icons.assignment_turned_in_outlined,
+          ),
+          DashboardCard(
+            title: 'Quick Access',
+            subtitle: 'General Request, Hiring Request...',
+            icon: Icons.flash_on,
+          ),
+          DashboardCard(
+            title: 'Employees on Leave Today',
+            subtitle: 'Leave Period Not Defined',
+            icon: Icons.people_alt_outlined,
+          ),
+          DashboardCard(
+            title: 'Time At Work',
+            subtitle: 'Time Tracking Details',
+            icon: Icons.access_time_outlined,
+          ),
+          DashboardCard(
+            title: 'Latest News',
+            subtitle: 'Stay Updated with the Latest Info',
+            icon: Icons.article_outlined,
+          ),
+          DashboardCard(
+            title: 'Latest Documents',
+            subtitle: 'Access Important Files',
+            icon: Icons.folder_open_outlined,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DashboardCard extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final IconData icon;
+
+  DashboardCard({
+    required this.title,
+    required this.subtitle,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, size: 30, color: Colors.blue),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Text(
+              subtitle,
+              style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.orange,
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: EdgeInsets.only(
+          left: 20, right: 20, top: 30, bottom: 10), // Menambahkan padding atas
+      width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
-              Icon(Icons.domain, color: Colors.white, size: 30),
-              SizedBox(width: 10),
               Text(
-                'PT ARKAMAYA',
-                style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                'Employee Management',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
             ],
           ),
           Row(
             children: [
-              IconButton(
-                icon: Icon(Icons.settings, color: Colors.white),
-                onPressed: () {
-                  // Navigasi ke halaman pengaturan
-                },
+              SizedBox(width: 10),
+              Text(
+                'Log Out',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
               ),
               SizedBox(width: 10),
               IconButton(
@@ -84,51 +254,37 @@ class HeaderSection extends StatelessWidget {
   }
 }
 
-class HeroSection extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Simplify Your HR Management with PT Arkamaya',
-            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Comprehensive, customizable, and easy-to-use HR software for businesses of all sizes.',
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text('Get Started'),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class FeaturesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
-    
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Key Features', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text('Key Features',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          FeatureCard(title: 'Employee Information Management', description: 'Simplify data handling with an intuitive interface.'),
-          FeatureCard(title: 'Time & Attendance Tracking', description: 'Accurate and efficient time management.'),
-          FeatureCard(title: 'Recruitment Management', description: 'Streamline your hiring process.'),
-          FeatureCard(title: 'Performance Management', description: 'Track and improve employee performance.'),
+          SingleChildScrollView(
+            // Tambahkan ScrollView jika konten melebihi ukuran layar
+            child: Column(
+              children: [
+                FeatureCard(
+                    title: 'Employee Information Management',
+                    description:
+                        'Simplify data handling with an intuitive interface.'),
+                FeatureCard(
+                    title: 'Time & Attendance Tracking',
+                    description: 'Accurate and efficient time management.'),
+                FeatureCard(
+                    title: 'Recruitment Management',
+                    description: 'Streamline your hiring process.'),
+                FeatureCard(
+                    title: 'Performance Management',
+                    description: 'Track and improve employee performance.'),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -145,6 +301,7 @@ class FeatureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10),
+      elevation: 3, // Menambahkan bayangan agar Card terlihat lebih menonjol
       child: ListTile(
         title: Text(title),
         subtitle: Text(description),
@@ -162,12 +319,22 @@ class BenefitsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Why Choose PT Arkamaya?', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text('Why Choose PT Arkamaya?',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
-          BenefitPoint(title: 'Customizable', description: 'Tailor the software to fit your unique business needs.'),
-          BenefitPoint(title: 'Scalable', description: 'Grows with your business.'),
-          BenefitPoint(title: 'User-Friendly', description: 'Easy for anyone to use, with minimal training.'),
-          BenefitPoint(title: 'Secure', description: 'Keep your data safe with robust security features.'),
+          BenefitPoint(
+              title: 'Customizable',
+              description:
+                  'Tailor the software to fit your unique business needs.'),
+          BenefitPoint(
+              title: 'Scalable', description: 'Grows with your business.'),
+          BenefitPoint(
+              title: 'User-Friendly',
+              description: 'Easy for anyone to use, with minimal training.'),
+          BenefitPoint(
+              title: 'Secure',
+              description:
+                  'Keep your data safe with robust security features.'),
         ],
       ),
     );
@@ -182,10 +349,29 @@ class BenefitPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Icon(Icons.check, color: Colors.orange),
-      title: Text(title),
-      subtitle: Text(description),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
+      child: Row(
+        children: [
+          Icon(Icons.check_circle, color: Colors.green),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(
+                      text: '$title: ',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 16)),
+                  TextSpan(text: description),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -198,11 +384,18 @@ class TestimonialsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('What Our Clients Say', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text('What Our Clients Say',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
           SizedBox(height: 10),
           TestimonialCard(
-            quote: 'PT Arkamaya has transformed our HR processes and made our team more efficient.',
-            clientName: 'Client Name',
+            clientName: 'John Doe',
+            testimonial:
+                'The system has transformed our HR processes. Highly recommend!',
+          ),
+          TestimonialCard(
+            clientName: 'Jane Smith',
+            testimonial:
+                'A great tool for managing employee data and performance.',
           ),
         ],
       ),
@@ -211,23 +404,27 @@ class TestimonialsSection extends StatelessWidget {
 }
 
 class TestimonialCard extends StatelessWidget {
-  final String quote;
   final String clientName;
+  final String testimonial;
 
-  TestimonialCard({required this.quote, required this.clientName});
+  TestimonialCard({required this.clientName, required this.testimonial});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10),
+      elevation: 3,
       child: Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('"$quote"', style: TextStyle(fontStyle: FontStyle.italic)),
-            SizedBox(height: 10),
-            Text('- $clientName', style: TextStyle(fontWeight: FontWeight.bold)),
+            Text(
+              clientName,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5),
+            Text(testimonial),
           ],
         ),
       ),
@@ -239,34 +436,18 @@ class FooterSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.black,
       padding: EdgeInsets.all(20),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            'PT Arkamaya',
-            style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 10),
-          Text(
-            'Email: info@arkamaya.com | Phone: (123) 456-7890',
-            style: TextStyle(color: Colors.white),
-          ),
-          SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(FontAwesomeIcons.facebookF, color: Colors.white),
-              SizedBox(width: 10),
-              Icon(FontAwesomeIcons.twitter, color: Colors.white),
-              SizedBox(width: 10),
-              Icon(FontAwesomeIcons.linkedinIn, color: Colors.white),
-            ],
+            '© 2024 PT Arkamaya. All rights reserved.',
+            style: TextStyle(color: Colors.grey),
           ),
           SizedBox(height: 10),
           Text(
             'Privacy Policy | Terms of Service',
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(color: Colors.black),
           ),
         ],
       ),
