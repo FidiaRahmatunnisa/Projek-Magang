@@ -5,23 +5,24 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.orange,
       body: Row(
         children: [
-          Expanded(
-            flex: 2, // Lebar sidebar
+          // Sidebar
+          Container(
+            width: MediaQuery.of(context).size.width * 0.2,
+            color: Colors.orange, // Warna background sidebar untuk test
             child: ProfileSidebar(),
           ),
+          // Konten Utama
           Expanded(
-            flex: 8, // Lebar konten utama
             child: Column(
               children: [
                 HeaderSection(),
-                ModuleNavigationBar(), // Tambahkan bar navigasi modul di sini
+                ModuleNavigationBar(), // Pindah ke sini
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         DashboardCards(),
                         BenefitsSection(),
@@ -39,13 +40,13 @@ class LandingPage extends StatelessWidget {
     );
   }
 }
-
 class ModuleNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.orange[100],
       padding: EdgeInsets.symmetric(vertical: 15),
+      width: double.infinity, // Memastikan lebar penuh
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
@@ -64,6 +65,7 @@ class ModuleNavigationBar extends StatelessWidget {
     );
   }
 }
+
 
 class ModuleButton extends StatelessWidget {
   final String label;
@@ -98,9 +100,7 @@ class ModuleButton extends StatelessWidget {
           ),
           icon: Icon(icon, size: 20),
           label: Text(label),
-          onPressed: () {
-          
-          },
+          onPressed: () {},
         ),
       ),
     );
@@ -207,13 +207,14 @@ class DashboardCard extends StatelessWidget {
   }
 }
 
+
 class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.orange,
       padding: EdgeInsets.only(
-          left: 20, right: 20, top: 30, bottom: 10), // Menambahkan padding atas
+          left: 15, right: 15, top: 15, bottom: 10), // Menambahkan padding atas
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -224,7 +225,7 @@ class HeaderSection extends StatelessWidget {
                 'Employee Management',
                 style: TextStyle(
                     color: Colors.white,
-                    fontSize: 24,
+                    fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
             ],
@@ -315,7 +316,6 @@ class BenefitsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(20),
-      color: Colors.grey[200],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
