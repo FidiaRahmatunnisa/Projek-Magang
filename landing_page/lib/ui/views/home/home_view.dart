@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 // import 'package:landing_page/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked.dart';
@@ -148,10 +149,10 @@ class HomeView extends StackedView<HomeViewModel> {
                                 fontSize: 15,
                               ),
                             ),
-                            SizedBox(width: 350),
+                            SizedBox(width: 300),
                             LayoutBuilder(builder: (context, constraints) {
                               return Container(
-                                width: 150,
+                                width: 180,
                                 height: 50,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -169,26 +170,37 @@ class HomeView extends StackedView<HomeViewModel> {
                                   ],
                                 ),
                                 child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
+                                  child: ElevatedButton(
+                                      onPressed: null,
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.white,
+                                          fixedSize: Size(180, 50)),
+                                      child: Text(
                                         'Book a Free Demo',
                                         style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
                                           color: Colors.black,
                                         ),
-                                      ),
-                                    ],
-                                  ),
+                                      )),
+                                  // child: Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Book a Free Demo',
+                                  //       style: TextStyle(
+                                  //         fontWeight: FontWeight.bold,
+                                  //         fontSize: 14,
+                                  //         color: Colors.black,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
                                 ),
                               );
                             }),
                             SizedBox(width: 20),
                             LayoutBuilder(builder: (context, constraints) {
                               return Container(
-                                width: 150,
+                                width: 180,
                                 height: 50,
                                 decoration: BoxDecoration(
                                   color: Colors.black,
@@ -206,19 +218,29 @@ class HomeView extends StackedView<HomeViewModel> {
                                   ],
                                 ),
                                 child: Center(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        'Contact Sales',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 14,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ],
+                                  child: ElevatedButton(
+                                    onPressed: null,
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.black,
+                                        fixedSize: Size(180, 50)),
+                                    child: Text(
+                                      'Contact Sales',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
+                                  // child: Column(
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Contact Sales',
+                                  //       style: TextStyle(
+                                  //         fontWeight: FontWeight.bold,
+                                  //         fontSize: 14,
+                                  //         color: Colors.white,
+                                  //       ),
+                                  //     ),
+                                  //   ],
+                                  // ),
                                 ),
                               );
                             }),
@@ -274,9 +296,9 @@ class HomeView extends StackedView<HomeViewModel> {
                                         builder: (context, constraints) {
                                       return Container(
                                         // width: 550,
-                                        width: constraints.maxWidth < 550
+                                        width: constraints.maxWidth < 600
                                             ? constraints.maxWidth
-                                            : 550,
+                                            : 600,
                                         height: 50,
                                         padding: const EdgeInsets.only(
                                           left: 40,
@@ -308,7 +330,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                               return Container(
                                                 child: Padding(
                                                   padding:
-                                                      EdgeInsets.only(left: 60),
+                                                      EdgeInsets.only(left: 50),
                                                   child: Text(
                                                     'Enter your email address here',
                                                     style: TextStyle(
@@ -325,12 +347,12 @@ class HomeView extends StackedView<HomeViewModel> {
                                               return Container(
                                                 // width: 140,
                                                 width:
-                                                    constraints.maxWidth < 140
+                                                    constraints.maxWidth < 150
                                                         ? constraints.maxWidth
-                                                        : 140,
+                                                        : 150,
                                                 height: 40,
-                                                padding:
-                                                    EdgeInsets.only(left: 15),
+                                                // padding:
+                                                //     EdgeInsets.only(left: 1),
                                                 decoration: BoxDecoration(
                                                   color: Colors.orange,
                                                   borderRadius:
@@ -353,24 +375,36 @@ class HomeView extends StackedView<HomeViewModel> {
                                                 child: Row(
                                                   children: [
                                                     Center(
-                                                      child: Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Text(
+                                                      child: ElevatedButton(
+                                                          onPressed: null,
+                                                          child: Text(
                                                             '30-Day Free Trial',
                                                             style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 14,
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .black,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          )),
+                                                      // child: Column(
+                                                      //   mainAxisAlignment:
+                                                      //       MainAxisAlignment
+                                                      //           .center,
+                                                      //   children: [
+                                                      //     Text(
+                                                      //       '30-Day Free Trial',
+                                                      //       style: TextStyle(
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .bold,
+                                                      //         fontSize: 14,
+                                                      //         color:
+                                                      //             Colors.white,
+                                                      //       ),
+                                                      //     ),
+                                                      //   ],
+                                                      // ),
                                                     ),
                                                   ],
                                                 ),
@@ -482,15 +516,15 @@ class HomeView extends StackedView<HomeViewModel> {
                                       // color: Colors.orange[400],
                                       gradient: LinearGradient(
                                         colors: [
-                                          Colors.white!,
+                                          Colors.orange!,
                                           Colors.orange[400]!
                                         ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
                                       ),
                                       borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(200.0),
-                                        topRight: Radius.circular(200.0),
+                                        topLeft: Radius.circular(600.0),
+                                        topRight: Radius.circular(600.0),
                                       ),
                                       boxShadow: [
                                         BoxShadow(
@@ -520,39 +554,38 @@ class HomeView extends StackedView<HomeViewModel> {
                                 width: 1500,
                                 height: 400,
                                 decoration: BoxDecoration(
-                                  // color: Colors.orange[700],
                                   gradient: LinearGradient(
                                     colors: [
                                       Colors.orange[400]!,
-                                      Colors.white!
+                                      Colors.orange!,
                                     ],
-                                    begin: Alignment.topCenter,
-                                    end: Alignment.bottomCenter,
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
                                   ),
                                   borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(50),
-                                    bottomRight: Radius.circular(50),
+                                    bottomLeft: Radius.circular(600),
+                                    bottomRight: Radius.circular(600),
                                   ),
                                 ),
                               );
                             }),
 
                             //background berwarna putih hitam gradasi
-                              Container(
-                                  width: 1400,
-                                  height: 400,
-                                  decoration: const BoxDecoration(
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.white,
-                                        Colors.black,
-                                        Colors.white,
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter, 
-                                      ),
-                                    ),
-                                ),
+                            // Container(
+                            //     width: 1400,
+                            //     height: 400,
+                            //     decoration: const BoxDecoration(
+                            //       gradient: LinearGradient(
+                            //         colors: [
+                            //           Colors.white,
+                            //           Colors.black,
+                            //           Colors.white,
+                            //         ],
+                            //         begin: Alignment.topCenter,
+                            //         end: Alignment.bottomCenter,
+                            //         ),
+                            //       ),
+                            //   ),
                           ],
                         ),
 
@@ -567,83 +600,84 @@ class HomeView extends StackedView<HomeViewModel> {
                         // ),
 
                         // bagian image background gradien white orange-white-
-                        LayoutBuilder(
-                          builder: (context, constraints) {
+                        LayoutBuilder(builder: (context, constraints) {
                           return Expanded(
-                            child: Container(
+                              child: Container(
                             padding: EdgeInsets.only(top: 200),
                             width: 1500,
                             height: 1000,
                             child: Column(
-                            // mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              // box gambar yang bawah dari gambar lengkung keatas, diatasnya buram
-                              Container(
-                                width: constraints.maxWidth < 500 ? constraints.maxWidth :500,
-                                height: 300,
-                                child: Column(
-                                  children: [
-                                    Image.asset(
-                                      'assets/logo.png',
-                                      width: 400,
+                              // mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // box gambar yang bawah dari gambar lengkung keatas, diatasnya buram
+                                Container(
+                                  width: constraints.maxWidth < 500
+                                      ? constraints.maxWidth
+                                      : 500,
+                                  height: 300,
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        'assets/logo.png',
+                                        width: 400,
                                       ),
-                                    SizedBox(height: 100,),
-                                   const Text(
-                                      // 'OrangeHRM provides a world-class HRIS experience and offers everything you \nand your team need to be the HR heroes you know you are. \nFrom talent management to culture, to people management and compensation, \nOrangeHRM helps thousands of businesses around the world be great places \nto work.',
+                                      SizedBox(
+                                        height: 100,
+                                      ),
+                                      const Text(
+                                        // 'OrangeHRM provides a world-class HRIS experience and offers everything you \nand your team need to be the HR heroes you know you are. \nFrom talent management to culture, to people management and compensation, \nOrangeHRM helps thousands of businesses around the world be great places \nto work.',
                                         '( ini box deskripsi )',
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 15,
-                                          
                                         ),
-                                    ),
-                                  ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
 
-                              SizedBox(height: 100,),
-                              
-                              // box video youtube
-                              Container(
-                                width: 500,
-                                height: 300,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(0.2),
-                                      offset: Offset(0, 4),
-                                      blurRadius: 6,
-                                      spreadRadius: 2,
-                                    )
-                                  ]
+                                SizedBox(
+                                  height: 100,
                                 ),
-                                child: Text(
-                                  'ini box video'
+
+                                // box video youtube
+                                Container(
+                                  width: 500,
+                                  height: 300,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(0.2),
+                                          offset: Offset(0, 4),
+                                          blurRadius: 6,
+                                          spreadRadius: 2,
+                                        )
+                                      ]),
+                                  child: Text('ini box video'),
                                 ),
-                              ),
 
-                              SizedBox(height: 100,),
+                                SizedBox(
+                                  height: 100,
+                                ),
 
-                              // bagian lengkung kiri yg memakan background hitam
-                              // Container(
-                              //   width: 1500,
-                              //   height: 100,
-                              //   decoration: BoxDecoration(
-                              //     color: Colors.white,
-                              //     borderRadius: BorderRadius.only(
-                              //     topLeft: Radius.circular(200),
-                              //     // topRight: Radius.circular(200),
-                              //     ),
-                              //  ),
-                              // ),
-                             
-                             ],
+                                // bagian lengkung kiri yg memakan background hitam
+                                // Container(
+                                //   width: 1500,
+                                //   height: 100,
+                                //   decoration: BoxDecoration(
+                                //     color: Colors.white,
+                                //     borderRadius: BorderRadius.only(
+                                //     topLeft: Radius.circular(200),
+                                //     // topRight: Radius.circular(200),
+                                //     ),
+                                //  ),
+                                // ),
+                              ],
                             ),
-                          )
-                         ); 
+                          ));
                         }),
                       ],
                     ),
@@ -659,8 +693,8 @@ class HomeView extends StackedView<HomeViewModel> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           ClipRRect(
-                            // borderRadius: BorderRadius.circular(150),
-                            child:Image.asset(
+                            // borderRadius: BorderRadius.all(Radius.circular(80)),
+                            child: Image.asset(
                               'assets/rapat.jpg',
                               width: 500,
                               height: 500,
@@ -682,26 +716,21 @@ class HomeView extends StackedView<HomeViewModel> {
                                       Text(
                                         'People Management',
                                         style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                        ),
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: 90),
                                         child: Text(
-                                            '(ini deskripsinya)',
-                                            style: TextStyle(
-                                              fontSize: 15,
-                                            ),
+                                          '(ini deskripsinya)',
+                                          style: TextStyle(
+                                            fontSize: 15,
                                           ),
-                                        
+                                        ),
                                       ),
-                                      
                                     ],
-                                  ), 
-                             
                                   ),
-
+                                ),
                               ],
                             ),
                           ),
@@ -709,7 +738,55 @@ class HomeView extends StackedView<HomeViewModel> {
                       ),
                     ),
 
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                    Container(
+                      width: 1500,
+                      height: 600,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: 500,
+                            height: 300,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          ClipRect(
+                            child: Image.asset(
+                              'assets/rapat2.jpg',
+                              width: 400,
+                              height: 300,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+
+                    Stack(
+                      children: [
+            // Bagian background dengan gelombang di atas dan bawah
+            ClipPath(
+              clipper: WaveClipper(), // Menggunakan custom clipper
+              child: Container(
+                color: Colors.black38, // Warna latar belakang
+                height: 300, // Tinggi dari gelombang
+              ),
+            ),
+            // Konten lainnya
+            Center(
+              child: Text(
+                'Hello, Flutter!',
+                style: TextStyle(fontSize: 24, color: Colors.white),
+              ),
+            ),
+                      ],
+                    ),
+                    SizedBox(height: 30,)
                   ],
                 ),
               ),
@@ -725,6 +802,42 @@ class HomeView extends StackedView<HomeViewModel> {
     BuildContext context,
   ) =>
       HomeViewModel();
+}
+
+// Custom clipper untuk membuat bentuk gelombang di atas dan bawah
+class WaveClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+
+    // Gelombang bagian atas
+    var firstStartPoint = Offset(0, 50); // Titik awal gelombang
+    var firstEndPoint = Offset(size.width / 2, 30); // Titik akhir pertama
+
+    var secondStartPoint = Offset(size.width / 2, 30); // Titik awal kedua
+    var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
+
+    path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
+
+    path.quadraticBezierTo(
+      size.width / 4, 0, // Titik kontrol pertama
+      firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
+    );
+
+    path.quadraticBezierTo(
+      size.width * 3 / 4, 60, // Titik kontrol kedua
+      secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
+    );
+
+    path.lineTo(size.width, size.height); // Ke ujung kanan bawah
+    path.lineTo(0, size.height); // Ke ujung kiri bawah
+    path.close(); // Menutup path
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 // kelas menggunung border-radius
