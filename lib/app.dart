@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'views/landing_page.dart';
+import 'package:arkamaya_landing_page/views/landing_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

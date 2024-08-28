@@ -1,79 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import '../viewmodels/landing_page_viewmodel.dart';
 import 'package:arkamaya_landing_page/widgets/profile_sidebar.dart';
+import 'package:arkamaya_landing_page/viewmodels/benefits_view_model.dart';
+import 'package:arkamaya_landing_page/viewmodels/dashboard_view_model.dart';
+import 'package:arkamaya_landing_page/viewmodels/features_view_model.dart';
+import 'package:arkamaya_landing_page/viewmodels/header_view_model.dart';
+import 'package:arkamaya_landing_page/viewmodels/module_navigation_view_model.dart';
+import 'package:arkamaya_landing_page/viewmodels/testimonials_view_model.dart';
 
 class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.orange,
-      body: Row(
-        children: [
-          // Sidebar
-          Container(
-            width: MediaQuery.of(context).size.width * 0.2,
-            color: Colors.orange, // Warna background sidebar untuk test
-            child: ProfileSidebar(),
-          ),
-          // Konten Utama
-          Expanded(
-            child: Column(
-              children: [
-                HeaderSection(),
-                ModuleNavigationBar(), // Pindah ke sini
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        DashboardCards(),
-                        BenefitsSection(),
-                        TestimonialsSection(),
-                        FooterSection(),
-                      ],
+    return ViewModelBuilder<LandingPageViewModel>.reactive(
+      viewModelBuilder: () => LandingPageViewModel(),
+      builder: (context, model, child) {
+        return Scaffold(
+          backgroundColor: Colors.orange,
+          body: Row(
+            children: [
+              // Sidebar
+              Container(
+                width: MediaQuery.of(context).size.width * 0.2,
+                child: ProfileSidebarView(),
+              ),
+              // Konten Utama
+              Expanded(
+                child: Column(
+                  children: [
+                    HeaderSection(),
+                    ModuleNavigationBar(),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            DashboardCards(),
+                            BenefitsSection(),
+                            TestimonialsSection(),
+                            FooterSection(),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ],
-      ),
-    );
-  }
-}
-class ModuleNavigationBar extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange[100],
-      padding: EdgeInsets.symmetric(vertical: 15),
-      width: double.infinity, // Memastikan lebar penuh
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            ModuleButton(label: 'Home', icon: Icons.home, isActive: false),
-            ModuleButton(label: 'Employee List', icon: Icons.people),
-            ModuleButton(label: 'Directory', icon: Icons.folder),
-            ModuleButton(label: 'Buzz', icon: Icons.notifications),
-            ModuleButton(label: 'Announcements', icon: Icons.announcement),
-            ModuleButton(
-                label: 'Dashboard', icon: Icons.dashboard, isActive: true),
-            ModuleButton(label: 'More', icon: Icons.more_horiz),
-          ],
-        ),
-      ),
+        );
+      },
     );
   }
 }
 
+class ModuleNavigationBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ViewModelBuilder<ModuleNavigationViewModel>.reactive(
+      viewModelBuilder: () => ModuleNavigationViewModel(),
+      builder: (context, model, child) {
+        return Container(
+          color: Colors.orange[100],
+          padding: EdgeInsets.symmetric(vertical: 15),
+          width: double.infinity,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: model.modules.asMap().entries.map((entry) {
+                final index = entry.key;
+                final module = entry.value;
+                return ModuleButton(
+                  label: module.label,
+                  icon: module.icon,
+                  isActive: module.isActive,
+                  onPressed: () => model.onModuleSelected(index),
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
 
 class ModuleButton extends StatelessWidget {
   final String label;
   final IconData icon;
   final bool isActive;
+  final VoidCallback onPressed;
 
-  ModuleButton(
-      {required this.label, required this.icon, this.isActive = false});
+  ModuleButton({
+    required this.label,
+    required this.icon,
+    this.isActive = false,
+    required this.onPressed,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +104,7 @@ class ModuleButton extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: isActive ? Colors.orange : Colors.white,
-          borderRadius: BorderRadius.circular(20), // Ujung melengkung
+          borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
               color: Colors.black26,
@@ -95,12 +117,11 @@ class ModuleButton extends StatelessWidget {
           style: TextButton.styleFrom(
             foregroundColor: isActive ? Colors.white : Colors.black,
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-            backgroundColor:
-                Colors.transparent, // Menghilangkan background bawaan
+            backgroundColor: Colors.transparent,
           ),
           icon: Icon(icon, size: 20),
           label: Text(label),
-          onPressed: () {},
+          onPressed: onPressed,
         ),
       ),
     );
@@ -110,49 +131,28 @@ class ModuleButton extends StatelessWidget {
 class DashboardCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: GridView.count(
-        crossAxisCount: 3,
-        shrinkWrap: true,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 2, // Rasio aspek untuk ukuran card
-        physics:
-            NeverScrollableScrollPhysics(), // Nonaktifkan scroll di GridView
-        children: [
-          DashboardCard(
-            title: 'My Actions',
-            subtitle: 'No Pending Actions to Perform',
-            icon: Icons.assignment_turned_in_outlined,
+    return ViewModelBuilder<DashboardViewModel>.reactive(
+      viewModelBuilder: () => DashboardViewModel(),
+      builder: (context, model, child) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: GridView.count(
+            crossAxisCount: 3,
+            shrinkWrap: true,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            childAspectRatio: 2,
+            physics: NeverScrollableScrollPhysics(),
+            children: model.cards.map((card) {
+              return DashboardCard(
+                title: card.title,
+                subtitle: card.subtitle,
+                icon: card.icon,
+              );
+            }).toList(),
           ),
-          DashboardCard(
-            title: 'Quick Access',
-            subtitle: 'General Request, Hiring Request...',
-            icon: Icons.flash_on,
-          ),
-          DashboardCard(
-            title: 'Employees on Leave Today',
-            subtitle: 'Leave Period Not Defined',
-            icon: Icons.people_alt_outlined,
-          ),
-          DashboardCard(
-            title: 'Time At Work',
-            subtitle: 'Time Tracking Details',
-            icon: Icons.access_time_outlined,
-          ),
-          DashboardCard(
-            title: 'Latest News',
-            subtitle: 'Stay Updated with the Latest Info',
-            icon: Icons.article_outlined,
-          ),
-          DashboardCard(
-            title: 'Latest Documents',
-            subtitle: 'Access Important Files',
-            icon: Icons.folder_open_outlined,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -207,50 +207,55 @@ class DashboardCard extends StatelessWidget {
   }
 }
 
-
 class HeaderSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.orange,
-      padding: EdgeInsets.only(
-          left: 15, right: 15, top: 15, bottom: 10), // Menambahkan padding atas
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+    return ViewModelBuilder<HeaderViewModel>.reactive(
+      viewModelBuilder: () => HeaderViewModel(),
+      builder: (context, model, child) {
+        return Container(
+          color: Colors.orange,
+          padding: EdgeInsets.only(
+              left: 15,
+              right: 15,
+              top: 15,
+              bottom: 10), // Menambahkan padding atas
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Employee Management',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
+              Row(
+                children: [
+                  Text(
+                    model.title,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  SizedBox(width: 10),
+                  Text(
+                    'Log Out',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  IconButton(
+                    icon: Icon(Icons.exit_to_app, color: Colors.white),
+                    onPressed: model.onLogoutPressed,
+                  ),
+                ],
               ),
             ],
           ),
-          Row(
-            children: [
-              SizedBox(width: 10),
-              Text(
-                'Log Out',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                ),
-              ),
-              SizedBox(width: 10),
-              IconButton(
-                icon: Icon(Icons.exit_to_app, color: Colors.white),
-                onPressed: () {
-                  // Proses logout
-                },
-              ),
-            ],
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -258,36 +263,31 @@ class HeaderSection extends StatelessWidget {
 class FeaturesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Key Features',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          SingleChildScrollView(
-            // Tambahkan ScrollView jika konten melebihi ukuran layar
-            child: Column(
-              children: [
-                FeatureCard(
-                    title: 'Employee Information Management',
-                    description:
-                        'Simplify data handling with an intuitive interface.'),
-                FeatureCard(
-                    title: 'Time & Attendance Tracking',
-                    description: 'Accurate and efficient time management.'),
-                FeatureCard(
-                    title: 'Recruitment Management',
-                    description: 'Streamline your hiring process.'),
-                FeatureCard(
-                    title: 'Performance Management',
-                    description: 'Track and improve employee performance.'),
-              ],
-            ),
+    return ViewModelBuilder<FeaturesViewModel>.reactive(
+      viewModelBuilder: () => FeaturesViewModel(),
+      builder: (context, model, child) {
+        return Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Key Features',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              SingleChildScrollView(
+                child: Column(
+                  children: model.features.map((feature) {
+                    return FeatureCard(
+                      title: feature.title,
+                      description: feature.description,
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
@@ -302,7 +302,7 @@ class FeatureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.symmetric(vertical: 10),
-      elevation: 3, // Menambahkan bayangan agar Card terlihat lebih menonjol
+      elevation: 3,
       child: ListTile(
         title: Text(title),
         subtitle: Text(description),
@@ -314,29 +314,27 @@ class FeatureCard extends StatelessWidget {
 class BenefitsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Why Choose PT Arkamaya?',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          BenefitPoint(
-              title: 'Customizable',
-              description:
-                  'Tailor the software to fit your unique business needs.'),
-          BenefitPoint(
-              title: 'Scalable', description: 'Grows with your business.'),
-          BenefitPoint(
-              title: 'User-Friendly',
-              description: 'Easy for anyone to use, with minimal training.'),
-          BenefitPoint(
-              title: 'Secure',
-              description:
-                  'Keep your data safe with robust security features.'),
-        ],
-      ),
+    return ViewModelBuilder<BenefitsViewModel>.reactive(
+      viewModelBuilder: () => BenefitsViewModel(),
+      builder: (context, model, child) {
+        return Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Why Choose PT Arkamaya?',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              ...model.benefits.map((benefit) {
+                return BenefitPoint(
+                  title: benefit.title,
+                  description: benefit.description,
+                );
+              }).toList(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -379,26 +377,27 @@ class BenefitPoint extends StatelessWidget {
 class TestimonialsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('What Our Clients Say',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          SizedBox(height: 10),
-          TestimonialCard(
-            clientName: 'John Doe',
-            testimonial:
-                'The system has transformed our HR processes. Highly recommend!',
+    return ViewModelBuilder<TestimonialsViewModel>.reactive(
+      viewModelBuilder: () => TestimonialsViewModel(),
+      builder: (context, model, child) {
+        return Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('What Our Clients Say',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 10),
+              ...model.testimonials.map((testimonial) {
+                return TestimonialCard(
+                  clientName: testimonial.clientName,
+                  testimonial: testimonial.testimonial,
+                );
+              }).toList(),
+            ],
           ),
-          TestimonialCard(
-            clientName: 'Jane Smith',
-            testimonial:
-                'A great tool for managing employee data and performance.',
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
+import 'package:arkamaya_landing_page/viewmodels/profile_sidebar_viewmodel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class ProfileSidebar extends StatelessWidget {
+class ProfileSidebarView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ClipPath(
-      clipper: SidebarClipper(),
-      child: Container(
-        width: 250,
+    return ViewModelBuilder<ProfileSidebarViewModel>.reactive(
+      viewModelBuilder: () => ProfileSidebarViewModel(),
+      builder: (context, viewModel, child) => Container(
         decoration: BoxDecoration(
           color: Colors.grey[800],
           borderRadius: BorderRadius.only(
@@ -15,7 +16,7 @@ class ProfileSidebar extends StatelessWidget {
             bottomRight: Radius.circular(30),
           ),
         ),
-        padding: EdgeInsets.symmetric(vertical: 16),
+        padding: EdgeInsets.only(top: 16, bottom: 16, right: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -76,7 +77,7 @@ class ProfileSidebar extends StatelessWidget {
             SizedBox(height: 20),
             TextField(
               decoration: InputDecoration(
-                suffixIcon: Icon(Icons.search, color: Colors.white),
+                prefixIcon: Icon(Icons.search, color: Colors.white),
                 hintText: 'Search...',
                 hintStyle: TextStyle(color: Colors.white54),
                 filled: true,
@@ -93,52 +94,71 @@ class ProfileSidebar extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   ListTile(
-                    leading: Icon(Icons.admin_panel_settings, color: Colors.white),
+                    leading: Icon(Icons.admin_panel_settings,
+                        color: Colors.white),
                     title: Text('HR Administration',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToHRAdministration();
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.people, color: Colors.white),
                     title: Text('Employee Management',
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToEmployeeManagement();
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.bar_chart, color: Colors.white),
                     title: Text('Reports and Analytics',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToReportsAndAnalytics();
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.calendar_today, color: Colors.white),
                     title: Text('Leave', style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToLeave();
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.timer, color: Colors.white),
                     title: Text('Time Tracking',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToTimeTracking();
+                    },
                   ),
                   ListTile(
                     leading: Icon(Icons.access_time, color: Colors.white),
-                    title:
-                        Text('Attendance', style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    title: Text('Attendance',
+                        style: TextStyle(color: Colors.white)),
+                    onTap: () {
+                      viewModel.navigateToAttendance();
+                    },
                   ),
                   ListTile(
-                    leading: Icon(FontAwesomeIcons.userPlus, color: Colors.white),
+                    leading: Icon(FontAwesomeIcons.userPlus,
+                        color: Colors.white),
                     title: Text('Recruitment (ATS)',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToRecruitment();
+                    },
                   ),
                   ListTile(
-                    leading: Icon(Icons.assignment_ind, color: Colors.white),
+                    leading:
+                        Icon(Icons.assignment_ind, color: Colors.white),
                     title: Text('On/Offboarding',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      viewModel.navigateToOnOffboarding();
+                    },
                   ),
                 ],
               ),
@@ -148,54 +168,4 @@ class ProfileSidebar extends StatelessWidget {
       ),
     );
   }
-}
-
-class SidebarClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    final path = Path();
-    path.lineTo(0, size.height - 30);
-    path.arcToPoint(
-      Offset(0, size.height),
-      radius: Radius.circular(30),
-      clockwise: false,
-    );
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, 0);
-    path.close();
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
-
-
-
-
-class DashboardScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          // Sidebar
-          Positioned(
-            top: 0,
-            left: 0,
-            child: Container(
-              width: 250,
-              height: MediaQuery.of(context).size.height,
-              child: ProfileSidebar(),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-void main() {
-  runApp(MaterialApp(home: DashboardScreen()));
 }
