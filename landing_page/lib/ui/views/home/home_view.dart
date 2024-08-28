@@ -16,24 +16,9 @@ import 'package:stacked/stacked.dart';
 import 'home_viewmodel.dart';
 
 class HomeView extends StackedView<HomeViewModel> {
-  // const HomeView({Key? key}) : super(key: key);
-  final AutoScrollController autoScrollController;
-  HomeView({Key? key})
-      : autoScrollController =
-            AutoScrollController(scrollController: ScrollController()),
-        super(key: key);
+  HomeView({super.key});
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   autoScrollController.startScrolling(); // Memulai auto scroll
-  // }
-
-  // @override
-  // void dispose() {
-  //   autoScrollController.dispose(); // Hentikan scroll dan buang timer
-  //   super.dispose();
-  // }
+  String? teksNavbar;
 
   @override
   Widget builder(
@@ -62,200 +47,159 @@ class HomeView extends StackedView<HomeViewModel> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(10),
-                // box navbar yang berwarna orange itu
-                child: LayoutBuilder(
-                  builder: (context, constraints) {
-                    return Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(10),
-                      // alignment: Alignment.centerLeft,
-                      decoration: BoxDecoration(
-                        color: Colors.orange[400],
-                        borderRadius: BorderRadius.circular(20.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(
-                                0.2), // Warna bayangan dengan transparansi
-                            offset: Offset(0,
-                                4), // Jarak bayangan dari kotak (horizontal, vertical)
-                            blurRadius: 6, // Radius blur bayangan
-                            spreadRadius: 2, // Jarak penyebaran bayangan
+                // box navbar yang berwarna orange yang berada paling atas
+                child: Flexible(
+                  flex: 1,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    // alignment: Alignment.centerLeft,
+                    decoration: BoxDecoration(
+                      color: Colors.orange[400],
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2), //
+                          offset: Offset(0,
+                              4), // Jarak bayangan dari kotak (horizontal, vertical)
+                          blurRadius: 6, // Radius blur bayangan
+                          spreadRadius: 2, // Jarak penyebaran bayangan
+                        ),
+                      ],
+                    ),
+
+                    //bagian navigasi
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 2,
+                            child: Row(
+                              children: [
+                                Image.asset(
+                                  'assets/logo.png',
+                                  height: 30,
+                                ),
+                                SizedBox(width: 20),
+                                Image.asset(
+                                  'assets/bendera.png',
+                                  height: 10,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                textNavbar('EN'),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                textNavbar('Solutions'),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                textNavbar('Why Arkamaya'),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                textNavbar('Resource'),
+                                SizedBox(
+                                  width: 30,
+                                ),
+                                textNavbar('Company'),
+                                SizedBox(width: 30),
+                              ],
+                            ),
+                          ),
+                          Flexible(
+                            flex: 1,
+                            child: Row(
+                              children: [
+                                // button 'Book a Free Demo'
+                                Container(
+                                  width: 180,
+                                  height: 50,
+                                  margin: EdgeInsets.only(left: 50),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.2),
+                                        offset: Offset(0, 4),
+                                        blurRadius: 6, // Radius blur bayangan
+                                        spreadRadius:
+                                            2, // Jarak penyebaran bayangan
+                                      ),
+                                    ],
+                                  ),
+                                  child: Material(
+                                    elevation: 5,
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: InkWell(
+                                      onTap: () {},
+                                      splashColor: Colors.blueGrey,
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Center(
+                                        child: Text(
+                                          'Book a Free Demo',
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // button 'contact sales'
+                                SizedBox(width: 20),
+                                Container(
+                                  width: 180,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        // Warna bayangan dengan transparansi
+                                        color: Colors.black.withOpacity(0.2),
+                                        // Jarak bayangan dari kotak (horizontal, vertical)
+                                        offset: Offset(0, 4),
+                                        blurRadius: 6, // Radius blur bayangan
+                                        spreadRadius:
+                                            2, // Jarak penyebaran bayangan
+                                      ),
+                                    ],
+                                  ),
+                                  child: Material(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.black,
+                                    child: InkWell(
+                                      splashColor: Colors.blueGrey,
+                                      borderRadius: BorderRadius.circular(20),
+                                      onTap: () {},
+                                      child: Center(
+                                          child: Text(
+                                        'Contact Sales',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
-
-                      //bagian navigasi
-                      child: Padding(
-                        padding: EdgeInsets.all(5),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/logo.png',
-                              height: 30,
-                              // color: Colors.white,
-                            ),
-                            SizedBox(width: 20),
-                            Image.asset(
-                              'assets/bendera.png',
-                              height: 10,
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Text(
-                              'EN',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              'Solutions',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              'Why Arkamaya',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              'Resource',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 30,
-                            ),
-                            Text(
-                              'Company',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                              ),
-                            ),
-                            SizedBox(width: 300),
-                            LayoutBuilder(builder: (context, constraints) {
-                              return Container(
-                                width: 180,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(
-                                          0.2), // Warna bayangan dengan transparansi
-                                      offset: Offset(0,
-                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                      blurRadius: 6, // Radius blur bayangan
-                                      spreadRadius:
-                                          2, // Jarak penyebaran bayangan
-                                    ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: ElevatedButton(
-                                      onPressed: null,
-                                      style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.white,
-                                          fixedSize: Size(180, 50)),
-                                      child: Text(
-                                        'Book a Free Demo',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      )),
-                                  // child: Column(
-                                  //   mainAxisAlignment: MainAxisAlignment.center,
-                                  //   children: [
-                                  //     Text(
-                                  //       'Book a Free Demo',
-                                  //       style: TextStyle(
-                                  //         fontWeight: FontWeight.bold,
-                                  //         fontSize: 14,
-                                  //         color: Colors.black,
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // ),
-                                ),
-                              );
-                            }),
-                            SizedBox(width: 20),
-                            LayoutBuilder(builder: (context, constraints) {
-                              return Container(
-                                width: 180,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(
-                                          0.2), // Warna bayangan dengan transparansi
-                                      offset: Offset(0,
-                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                      blurRadius: 6, // Radius blur bayangan
-                                      spreadRadius:
-                                          2, // Jarak penyebaran bayangan
-                                    ),
-                                  ],
-                                ),
-                                child: Center(
-                                  child: ElevatedButton(
-                                    onPressed: null,
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.black,
-                                        fixedSize: Size(180, 50)),
-                                    child: Text(
-                                      'Contact Sales',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
-                                  // child: Column(
-                                  //   mainAxisAlignment: MainAxisAlignment.center,
-                                  //   children: [
-                                  //     Text(
-                                  //       'Contact Sales',
-                                  //       style: TextStyle(
-                                  //         fontWeight: FontWeight.bold,
-                                  //         fontSize: 14,
-                                  //         color: Colors.white,
-                                  //       ),
-                                  //     ),
-                                  //   ],
-                                  // ),
-                                ),
-                              );
-                            }),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
+                    ),
+                  ),
                 ),
               ),
 
               // bagian backgound dan isi-isi lainnya
               SizedBox(
                 child: Column(
-                  // crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
@@ -309,14 +253,11 @@ class HomeView extends StackedView<HomeViewModel> {
                                               BorderRadius.circular(20.0),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: Colors.black.withOpacity(
-                                                  0.2), // Warna bayangan dengan transparansi
-                                              offset: Offset(0,
-                                                  4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                              blurRadius:
-                                                  6, // Radius blur bayangan
-                                              spreadRadius:
-                                                  2, // Jarak penyebaran bayangan
+                                              color:
+                                                  Colors.black.withOpacity(0.2),
+                                              offset: Offset(0, 4),
+                                              blurRadius: 6,
+                                              spreadRadius: 2,
                                             ),
                                           ],
                                         ),
@@ -334,82 +275,56 @@ class HomeView extends StackedView<HomeViewModel> {
                                                   child: Text(
                                                     'Enter your email address here',
                                                     style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: Colors.black45,
-                                                    ),
+                                                        fontSize: 15,
+                                                        ),
                                                   ),
                                                 ),
                                               );
                                             }),
                                             // Box orange trial
-                                            LayoutBuilder(builder:
-                                                (context, constraints) {
-                                              return Container(
-                                                // width: 140,
-                                                width:
-                                                    constraints.maxWidth < 150
-                                                        ? constraints.maxWidth
-                                                        : 150,
-                                                height: 40,
-                                                // padding:
-                                                //     EdgeInsets.only(left: 1),
-                                                decoration: BoxDecoration(
-                                                  color: Colors.orange,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          20.0),
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Colors.black
-                                                          .withOpacity(
-                                                              0.2), // Warna bayangan dengan transparansi
-                                                      offset: Offset(0,
-                                                          4), // Jarak bayangan dari kotak (horizontal, vertical)
-                                                      blurRadius:
-                                                          6, // Radius blur bayangan
-                                                      spreadRadius:
-                                                          2, // Jarak penyebaran bayangan
+                                            LayoutBuilder(
+                                              builder: (context, constraints) {
+                                                return Container(
+                                                  width: constraints.maxWidth < 150? constraints.maxWidth: 150,
+                                                  height: 40,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.orange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(20.0),
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        color: Colors.black.withOpacity(0.2),
+                                                        offset: Offset(0, 4),
+                                                        blurRadius: 6,
+                                                        spreadRadius: 2,
+                                                      ),
+                                                    ],
+                                                  ),
+
+                                                  child: Material(
+                                                    borderRadius:
+                                                        BorderRadius.circular(20),
+                                                    color: Colors.orange[400],
+                                                    child: InkWell(
+                                                      onTap: () {},
+                                                      splashColor:
+                                                          Colors.blueGrey,
+                                                      borderRadius:
+                                                          BorderRadius.circular(20),
+                                                      child: Center(
+                                                        child: Text(
+                                                          '30-Day Free Trial',
+                                                          style: TextStyle(
+                                                              color:Colors.black,
+                                                              fontWeight:FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
                                                     ),
-                                                  ],
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Center(
-                                                      child: ElevatedButton(
-                                                          onPressed: null,
-                                                          child: Text(
-                                                            '30-Day Free Trial',
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                color: Colors
-                                                                    .black,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          )),
-                                                      // child: Column(
-                                                      //   mainAxisAlignment:
-                                                      //       MainAxisAlignment
-                                                      //           .center,
-                                                      //   children: [
-                                                      //     Text(
-                                                      //       '30-Day Free Trial',
-                                                      //       style: TextStyle(
-                                                      //         fontWeight:
-                                                      //             FontWeight
-                                                      //                 .bold,
-                                                      //         fontSize: 14,
-                                                      //         color:
-                                                      //             Colors.white,
-                                                      //       ),
-                                                      //     ),
-                                                      //   ],
-                                                      // ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            }),
+                                                  ),
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                       );
@@ -424,8 +339,8 @@ class HomeView extends StackedView<HomeViewModel> {
                     ),
 
                     CustomPaint(
-                      size: Size(double.infinity,
-                          70), // posisi (HEIGHT) garis bergelombang dari ukuran halaman
+                      // posisi (HEIGHT) garis bergelombang dari ukuran halaman
+                      size: Size(double.infinity,70), 
                       painter: WavePainter(),
                     ),
 
@@ -458,15 +373,13 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     //bagian scroll view
                     Container(
-                      height: 200,
+                      height: 200,                      
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        controller: autoScrollController.scrollController,
-                        child: Row(
+                        child: Row(                        
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,  
                           children: List.generate(4, (index) {
                             final List<String> imagePaths = [
-                              // 'assets/david.png',
-                              // 'assets/cs.png',
                               'assets/dlhk.png',
                               'assets/isa.png',
                               'assets/nec.png',
@@ -481,6 +394,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                   width: 100,
                                   height: 100,
                                   child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       Expanded(
                                           child: Image.asset(
@@ -516,8 +430,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                       // color: Colors.orange[400],
                                       gradient: LinearGradient(
                                         colors: [
-                                          Colors.orange!,
-                                          Colors.orange[400]!
+                                          Colors.blueGrey,
+                                          Colors.blueGrey[200]!
                                         ],
                                         begin: Alignment.topLeft,
                                         end: Alignment.bottomRight,
@@ -556,8 +470,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      Colors.orange[400]!,
-                                      Colors.orange!,
+                                      Colors.blueGrey[200]!,
+                                      Colors.blueGrey!,
                                     ],
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
@@ -599,7 +513,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         //   ),
                         // ),
 
-                        // bagian image background gradien white orange-white-
+                        // bagian image background gradien white orange
                         LayoutBuilder(builder: (context, constraints) {
                           return Expanded(
                               child: Container(
@@ -739,12 +653,12 @@ class HomeView extends StackedView<HomeViewModel> {
                     ),
 
                     SizedBox(
-                      height: 20,
+                      height: 0,
                     ),
 
                     Container(
                       width: 1500,
-                      height: 600,
+                      height: 500,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -769,30 +683,39 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     Stack(
                       children: [
-            // Bagian background dengan gelombang di atas dan bawah
-            ClipPath(
-              clipper: WaveClipper(), // Menggunakan custom clipper
-              child: Container(
-                color: Colors.black38, // Warna latar belakang
-                height: 300, // Tinggi dari gelombang
-              ),
-            ),
-            // Konten lainnya
-            Center(
-              child: Text(
-                'Hello, Flutter!',
-                style: TextStyle(fontSize: 24, color: Colors.white),
-              ),
-            ),
+                        // Bagian background dengan gelombang di atas dan bawah
+                        ClipPath(
+                          clipper: WaveClipper(), // Menggunakan custom clipper
+                          child: Container(
+                            color: Colors.blueGrey, // Warna latar belakang
+                            height: 400, // Tinggi dari gelombang
+                          ),
+                        ),
+                        // Konten lainnya
+                        
                       ],
                     ),
-                    SizedBox(height: 30,)
+                    
+                    SizedBox(
+                      height: 30,
+                    )
                   ],
                 ),
               ),
             ],
           ),
         ]),
+      ),
+    );
+  }
+
+  // Teks Navbar method
+  Text textNavbar(teksNavbar) {
+    return Text(
+      teksNavbar,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 15,
       ),
     );
   }
@@ -806,38 +729,38 @@ class HomeView extends StackedView<HomeViewModel> {
 
 // Custom clipper untuk membuat bentuk gelombang di atas dan bawah
 class WaveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
+    @override
+    Path getClip(Size size) {
+      var path = Path();
 
-    // Gelombang bagian atas
-    var firstStartPoint = Offset(0, 50); // Titik awal gelombang
-    var firstEndPoint = Offset(size.width / 2, 30); // Titik akhir pertama
+      // Gelombang bagian atas
+      var firstStartPoint = Offset(0, 60); // Titik awal gelombang
+      var firstEndPoint = Offset(size.width / 2, 10); // Titik akhir pertama
 
-    var secondStartPoint = Offset(size.width / 2, 30); // Titik awal kedua
-    var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
+      // var secondStartPoint = Offset(size.width / 2, 15); // Titik awal kedua
+      var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
 
-    path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
+      path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
 
-    path.quadraticBezierTo(
-      size.width / 4, 0, // Titik kontrol pertama
-      firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
-    );
+      path.quadraticBezierTo(
+        size.width / 4, 0, // Titik kontrol pertama
+        firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
+      );
 
-    path.quadraticBezierTo(
-      size.width * 3 / 4, 60, // Titik kontrol kedua
-      secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
-    );
+      path.quadraticBezierTo(
+        size.width * 3 / 4, 80, // Titik kontrol kedua
+        secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
+      );
 
-    path.lineTo(size.width, size.height); // Ke ujung kanan bawah
-    path.lineTo(0, size.height); // Ke ujung kiri bawah
-    path.close(); // Menutup path
+      path.lineTo(size.width, size.height); // Ke ujung kanan bawah
+      path.lineTo(0, size.height); // Ke ujung kiri bawah
+      path.close(); // Menutup path
 
-    return path;
-  }
+      return path;
+    }
 
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+    @override
+    bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 // kelas menggunung border-radius
@@ -919,17 +842,28 @@ class WavePainter extends CustomPainter {
           yOffset + amplitude * sin(frequency * (x / size.width) * 2 * pi);
       path.lineTo(x, y);
     }
+
+    // Menggambar bayangan di atas garis
+    Paint shadowPaint = Paint()
+      ..color = Colors.orange.withOpacity(0.7) // Mengatur opacity bayangan
+      ..maskFilter = MaskFilter.blur(BlurStyle.normal, 50.0);
+
+    // Geser sedikit bayangan ke bawah
+    canvas.save();
+    canvas.translate(0, 0); // Menggeser bayangan ke atas
+    canvas.drawPath(path, shadowPaint);
+    canvas.restore();
+
     canvas.drawPath(path, paint);
 
     // Garis bergelombang kedua
     paint.color = Colors.black87;
     path2.moveTo(0, yOffset + 40); // Posisi vertikal garis kedua
     for (double x = 0; x <= (size.width + 10); x++) {
-      double y = yOffset +
-          lineSpacing +
-          amplitude * sin(frequency * (x / size.width) * 2 * pi);
+      double y = yOffset +lineSpacing +amplitude * sin(frequency * (x / size.width) * 2 * pi);
       path2.lineTo(x, y);
     }
+    
     canvas.drawPath(path2, paint);
   }
 

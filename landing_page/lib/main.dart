@@ -25,7 +25,10 @@ class MainApp extends StatelessWidget {
       navigatorObservers: [
         StackedService.routeObserver,
       ],
-      debugShowCheckedModeBanner: false, // Menyembunyikan logo debug
+      debugShowCheckedModeBanner: false, 
+      theme: ThemeData(
+        fontFamily: 'Poppins'
+      ),
     );
   }
   
