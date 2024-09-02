@@ -602,27 +602,38 @@ class HomeView extends StackedView<HomeViewModel> {
                       ],
                     ),
 
+                    // row gambar dan penjelasan 1
                     Container(
-                      width: 1500,
-                      height: 500,
-                      padding: EdgeInsets.all(110),
+                      width: MediaQuery.of(context).size.width*0.9,
+                      height: MediaQuery.of(context).size.height*0.4,
+                      // padding: EdgeInsets.only(left: 100, right: 100),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          ClipRRect(
-                            // borderRadius: BorderRadius.all(Radius.circular(80)),
-                            child: Image.asset(
-                              'assets/rapat.jpg',
-                              width: 500,
-                              height: 500,
+                          //gambar rapat1
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.35,
+                            height: MediaQuery.of(context).size.height*0.4,
+                            decoration: BoxDecoration(
+                              // shape: BoxShape.circle,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: Colors.blueGrey,
+                                width: 2,
+                              ),
+                              image: DecorationImage(
+                                image: AssetImage('assets/rapat2.jpg'),
+                                fit: BoxFit.cover
+                                ),
                             ),
                           ),
+                          //box penjelasan rapat1
                           Container(
-                            width: 500,
-                            height: 500,
+                            width: MediaQuery.of(context).size.width*0.35,
+                            height: MediaQuery.of(context).size.height*0.5,
                             decoration: BoxDecoration(
                               color: Colors.orange,
                               borderRadius: BorderRadius.circular(30),
@@ -662,30 +673,40 @@ class HomeView extends StackedView<HomeViewModel> {
                       height: 0,
                     ),
 
-                    // Container(
-                    //   width: 1500,
-                    //   height: 500,
-                    //   child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //     children: [
-                    //       Container(
-                    //         width: 500,
-                    //         height: 300,
-                    //         decoration: BoxDecoration(
-                    //           color: Colors.orange,
-                    //           borderRadius: BorderRadius.circular(20),
-                    //         ),
-                    //       ),
-                    //       ClipRect(
-                    //         child: Image.asset(
-                    //           'assets/rapat2.jpg',
-                    //           width: 400,
-                    //           height: 300,
-                    //         ),
-                    //       )
-                    //     ],
-                    //   ),
-                    // ),
+                    // row gambar dan penjelasan 2
+                    Container(
+                      width: MediaQuery.of(context).size.width*0.9,
+                      height: MediaQuery.of(context).size.height*0.6,
+                      // padding: EdgeInsets.only(left: MediaQuery.of(context).size., right: 100),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width*0.35,
+                            height: MediaQuery.of(context).size.height*0.4,
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          Container(
+                          width: MediaQuery.of(context).size.width*0.35,  
+                          height: MediaQuery.of(context).size.height*0.4,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(
+                              color: Colors.blueGrey,
+                              width: 2
+                            ),
+                            image: DecorationImage(
+                              image: AssetImage('assets/rapat.jpg'),
+                              fit: BoxFit.cover
+                              ),
+                          ),
+                          ),
+                        ],
+                      ),
+                    ),
 
                     Stack(
                       children: [
@@ -701,9 +722,9 @@ class HomeView extends StackedView<HomeViewModel> {
                       ],
                     ),
 
-                    SizedBox(
-                      height: 30,
-                    )
+                    // SizedBox(
+                    //   height: 30,
+                    // )
                   ],
                 ),
               ),
