@@ -8,13 +8,11 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-// import 'package:landing_page/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked.dart';
-// import 'package:landing_page/ui/common/app_colors.dart';
-// import 'package:landing_page/ui/common/ui_helpers.dart';
 
 import 'home_viewmodel.dart';
 
+// ignore: must_be_immutable
 class HomeView extends StackedView<HomeViewModel> {
   HomeView({super.key});
 
@@ -59,8 +57,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.2), //
-                          offset: Offset(0,
-                              4), // Jarak bayangan dari kotak (horizontal, vertical)
+                          offset: Offset(0, 4),
                           blurRadius: 6, // Radius blur bayangan
                           spreadRadius: 2, // Jarak penyebaran bayangan
                         ),
@@ -275,8 +272,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                                   child: Text(
                                                     'Enter your email address here',
                                                     style: TextStyle(
-                                                        fontSize: 15,
-                                                        ),
+                                                      fontSize: 15,
+                                                    ),
                                                   ),
                                                 ),
                                               );
@@ -285,38 +282,45 @@ class HomeView extends StackedView<HomeViewModel> {
                                             LayoutBuilder(
                                               builder: (context, constraints) {
                                                 return Container(
-                                                  width: constraints.maxWidth < 150? constraints.maxWidth: 150,
+                                                  width:
+                                                      constraints.maxWidth < 150
+                                                          ? constraints.maxWidth
+                                                          : 150,
                                                   height: 40,
                                                   decoration: BoxDecoration(
                                                     color: Colors.orange,
                                                     borderRadius:
-                                                        BorderRadius.circular(20.0),
+                                                        BorderRadius.circular(
+                                                            20.0),
                                                     boxShadow: [
                                                       BoxShadow(
-                                                        color: Colors.black.withOpacity(0.2),
+                                                        color: Colors.black
+                                                            .withOpacity(0.2),
                                                         offset: Offset(0, 4),
                                                         blurRadius: 6,
                                                         spreadRadius: 2,
                                                       ),
                                                     ],
                                                   ),
-
                                                   child: Material(
                                                     borderRadius:
-                                                        BorderRadius.circular(20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                     color: Colors.orange[400],
                                                     child: InkWell(
                                                       onTap: () {},
                                                       splashColor:
                                                           Colors.blueGrey,
                                                       borderRadius:
-                                                          BorderRadius.circular(20),
+                                                          BorderRadius.circular(
+                                                              20),
                                                       child: Center(
                                                         child: Text(
                                                           '30-Day Free Trial',
                                                           style: TextStyle(
-                                                              color:Colors.black,
-                                                              fontWeight:FontWeight.bold,
+                                                            color: Colors.black,
+                                                            fontWeight:
+                                                                FontWeight.bold,
                                                           ),
                                                         ),
                                                       ),
@@ -340,7 +344,7 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     CustomPaint(
                       // posisi (HEIGHT) garis bergelombang dari ukuran halaman
-                      size: Size(double.infinity,70), 
+                      size: Size(double.infinity, 70),
                       painter: WavePainter(),
                     ),
 
@@ -373,11 +377,11 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     //bagian scroll view
                     Container(
-                      height: 200,                      
+                      height: 200,
                       child: SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
-                        child: Row(                        
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,  
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: List.generate(4, (index) {
                             final List<String> imagePaths = [
                               'assets/dlhk.png',
@@ -394,7 +398,8 @@ class HomeView extends StackedView<HomeViewModel> {
                                   width: 100,
                                   height: 100,
                                   child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: <Widget>[
                                       Expanded(
                                           child: Image.asset(
@@ -415,6 +420,7 @@ class HomeView extends StackedView<HomeViewModel> {
                       height: 10,
                     ),
 
+                    // background oval-circle abu2
                     Stack(
                       children: [
                         // bagian background gradien
@@ -471,7 +477,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                   gradient: LinearGradient(
                                     colors: [
                                       Colors.blueGrey[200]!,
-                                      Colors.blueGrey!,
+                                      Colors.blueGrey,
                                     ],
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomLeft,
@@ -656,30 +662,30 @@ class HomeView extends StackedView<HomeViewModel> {
                       height: 0,
                     ),
 
-                    Container(
-                      width: 1500,
-                      height: 500,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Container(
-                            width: 500,
-                            height: 300,
-                            decoration: BoxDecoration(
-                              color: Colors.orange,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          ClipRect(
-                            child: Image.asset(
-                              'assets/rapat2.jpg',
-                              width: 400,
-                              height: 300,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                    // Container(
+                    //   width: 1500,
+                    //   height: 500,
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //     children: [
+                    //       Container(
+                    //         width: 500,
+                    //         height: 300,
+                    //         decoration: BoxDecoration(
+                    //           color: Colors.orange,
+                    //           borderRadius: BorderRadius.circular(20),
+                    //         ),
+                    //       ),
+                    //       ClipRect(
+                    //         child: Image.asset(
+                    //           'assets/rapat2.jpg',
+                    //           width: 400,
+                    //           height: 300,
+                    //         ),
+                    //       )
+                    //     ],
+                    //   ),
+                    // ),
 
                     Stack(
                       children: [
@@ -692,10 +698,9 @@ class HomeView extends StackedView<HomeViewModel> {
                           ),
                         ),
                         // Konten lainnya
-                        
                       ],
                     ),
-                    
+
                     SizedBox(
                       height: 30,
                     )
@@ -729,38 +734,38 @@ class HomeView extends StackedView<HomeViewModel> {
 
 // Custom clipper untuk membuat bentuk gelombang di atas dan bawah
 class WaveClipper extends CustomClipper<Path> {
-    @override
-    Path getClip(Size size) {
-      var path = Path();
+  @override
+  Path getClip(Size size) {
+    var path = Path();
 
-      // Gelombang bagian atas
-      var firstStartPoint = Offset(0, 60); // Titik awal gelombang
-      var firstEndPoint = Offset(size.width / 2, 10); // Titik akhir pertama
+    // Gelombang bagian atas
+    var firstStartPoint = Offset(0, 60); // Titik awal gelombang
+    var firstEndPoint = Offset(size.width / 2, 10); // Titik akhir pertama
 
-      // var secondStartPoint = Offset(size.width / 2, 15); // Titik awal kedua
-      var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
+    // var secondStartPoint = Offset(size.width / 2, 15); // Titik awal kedua
+    var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
 
-      path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
+    path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
 
-      path.quadraticBezierTo(
-        size.width / 4, 0, // Titik kontrol pertama
-        firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
-      );
+    path.quadraticBezierTo(
+      size.width / 4, 0, // Titik kontrol pertama
+      firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
+    );
 
-      path.quadraticBezierTo(
-        size.width * 3 / 4, 80, // Titik kontrol kedua
-        secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
-      );
+    path.quadraticBezierTo(
+      size.width * 3 / 4, 80, // Titik kontrol kedua
+      secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
+    );
 
-      path.lineTo(size.width, size.height); // Ke ujung kanan bawah
-      path.lineTo(0, size.height); // Ke ujung kiri bawah
-      path.close(); // Menutup path
+    path.lineTo(size.width, size.height); // Ke ujung kanan bawah
+    path.lineTo(0, size.height); // Ke ujung kiri bawah
+    path.close(); // Menutup path
 
-      return path;
-    }
+    return path;
+  }
 
-    @override
-    bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
 
 // kelas menggunung border-radius
@@ -860,10 +865,12 @@ class WavePainter extends CustomPainter {
     paint.color = Colors.black87;
     path2.moveTo(0, yOffset + 40); // Posisi vertikal garis kedua
     for (double x = 0; x <= (size.width + 10); x++) {
-      double y = yOffset +lineSpacing +amplitude * sin(frequency * (x / size.width) * 2 * pi);
+      double y = yOffset +
+          lineSpacing +
+          amplitude * sin(frequency * (x / size.width) * 2 * pi);
       path2.lineTo(x, y);
     }
-    
+
     canvas.drawPath(path2, paint);
   }
 
