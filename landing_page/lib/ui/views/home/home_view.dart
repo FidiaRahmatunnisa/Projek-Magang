@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 
@@ -46,8 +46,6 @@ class HomeView extends StackedView<HomeViewModel> {
               Padding(
                 padding: EdgeInsets.all(10),
                 // box navbar yang berwarna orange yang berada paling atas
-                child: Flexible(
-                  flex: 1,
                   child: Container(
                     padding: EdgeInsets.all(10),
                     // alignment: Alignment.centerLeft,
@@ -110,7 +108,7 @@ class HomeView extends StackedView<HomeViewModel> {
                             flex: 1,
                             child: Row(
                               children: [
-                                // button 'Book a Free Demo'
+                                // button 'Book a Free Demo'                                
                                 Container(
                                   width: 180,
                                   height: 50,
@@ -149,6 +147,7 @@ class HomeView extends StackedView<HomeViewModel> {
 
                                 // button 'contact sales'
                                 SizedBox(width: 20),
+
                                 Container(
                                   width: 180,
                                   height: 50,
@@ -191,7 +190,6 @@ class HomeView extends StackedView<HomeViewModel> {
                       ),
                     ),
                   ),
-                ),
               ),
 
               // bagian backgound dan isi-isi lainnya
@@ -604,8 +602,8 @@ class HomeView extends StackedView<HomeViewModel> {
 
                     // row gambar dan penjelasan 1
                     Container(
-                      width: MediaQuery.of(context).size.width*0.9,
-                      height: MediaQuery.of(context).size.height*0.4,
+                      width: MediaQuery.of(context).size.width * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.4,
                       // padding: EdgeInsets.only(left: 100, right: 100),
                       decoration: const BoxDecoration(
                         color: Colors.white,
@@ -615,8 +613,8 @@ class HomeView extends StackedView<HomeViewModel> {
                         children: [
                           //gambar rapat1
                           Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.4,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.4,
                             decoration: BoxDecoration(
                               // shape: BoxShape.circle,
                               borderRadius: BorderRadius.circular(20),
@@ -625,15 +623,14 @@ class HomeView extends StackedView<HomeViewModel> {
                                 width: 2,
                               ),
                               image: DecorationImage(
-                                image: AssetImage('assets/rapat2.jpg'),
-                                fit: BoxFit.cover
-                                ),
+                                  image: AssetImage('assets/rapat2.jpg'),
+                                  fit: BoxFit.cover),
                             ),
                           ),
                           //box penjelasan rapat1
                           Container(
-                            width: MediaQuery.of(context).size.width*0.35,
-                            height: MediaQuery.of(context).size.height*0.5,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            height: MediaQuery.of(context).size.height * 0.5,
                             decoration: BoxDecoration(
                               color: Colors.orange,
                               borderRadius: BorderRadius.circular(30),
@@ -669,61 +666,391 @@ class HomeView extends StackedView<HomeViewModel> {
                       ),
                     ),
 
-                    SizedBox(
-                      height: 0,
+                    SizedBox(height: 20,),
+
+                    // gelombang atas dan bawah
+                    Stack(
+                      children: [
+                        CustomPaint(
+                        painter: WavePainter2(),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*1.2,
+                          width: MediaQuery.of(context).size.width*1.0,
+                          child: Center(
+                           // row gambar dan penjelasan 2
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: MediaQuery.of(context).size.width * 0.9,
+                                  height: MediaQuery.of(context).size.height * 0.6,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width * 0.35,
+                                          height: MediaQuery.of(context).size.height * 0.4,
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(20),
+                                          ),
+                                        ),
+                                      ),
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width * 0.35,
+                                          height: MediaQuery.of(context).size.height * 0.5,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(20),
+                                            border:
+                                                Border.all(color: Colors.blueGrey, width: 2),
+                                            image: DecorationImage(
+                                                image: AssetImage('assets/rapat.jpg'),
+                                                fit: BoxFit.cover),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      
+                     ],
                     ),
 
-                    // row gambar dan penjelasan 2
+                    SizedBox(height: 10,),
+
+                    // bulat-bulat dan poto - penjelasan
                     Container(
-                      width: MediaQuery.of(context).size.width*0.9,
-                      height: MediaQuery.of(context).size.height*0.6,
-                      // padding: EdgeInsets.only(left: MediaQuery.of(context).size., right: 100),
+                      // alignment: Alignment.centerLeft,
+                      width: MediaQuery.of(context).size.width*1,
+                      height: MediaQuery.of(context).size.height*1,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
+                          // circle-box talent
+                          Stack(
+                            children: [
+                                 Container(
+                                //  width: MediaQuery.of(context).size.width*0.8,
+                                //  height: MediaQuery.of(context).size.height*0.8,
+                                width: 700,
+                                height: 700,
+                                 decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.orange
+                                 ),
+                                ),
+
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    top: MediaQuery.of(context).size.height*0.2,
+                                    left: MediaQuery.of(context).size.width*0.1
+                                    ),
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  height: MediaQuery.of(context).size.height*0.5,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.3),
+                                        spreadRadius: 4,
+                                        blurRadius: 7,
+                                        offset: Offset(2, 2),
+                                      )
+                                    ],
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 1
+                                    ),
+                                    image: DecorationImage(
+                                      image: AssetImage('assets/rapat3.jpg'),
+                                      fit: BoxFit.fill
+                                      ),
+                                  ),
+                                ),
+
+                           ],
+                          ),
+
+                          SizedBox(width: 20,),
+                          // box teks 'talent management ...'
                           Container(
                             width: MediaQuery.of(context).size.width*0.35,
                             height: MediaQuery.of(context).size.height*0.4,
                             decoration: BoxDecoration(
-                              color: Colors.orange,
                               borderRadius: BorderRadius.circular(20),
-                            ),
-                          ),
-                          Container(
-                          width: MediaQuery.of(context).size.width*0.35,  
-                          height: MediaQuery.of(context).size.height*0.4,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(
-                              color: Colors.blueGrey,
-                              width: 2
-                            ),
-                            image: DecorationImage(
-                              image: AssetImage('assets/rapat.jpg'),
-                              fit: BoxFit.cover
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1
                               ),
+                            ),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'Talent Management',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                ),
+
+                                Container(
+                                  padding: EdgeInsets.only(top: 100),
+                                  child: Center(
+                                    child: Text(
+                                      'Deskripsinya ....',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                               
+                             ],
+                            ),
                           ),
-                          ),
+
+                          SizedBox(height: 20,),
+                          
+                         
+
                         ],
                       ),
                     ),
+                    
+                    SizedBox(height: 20,),
 
+                     //circel- box kompensasi
                     Stack(
                       children: [
-                        // Bagian background dengan gelombang di atas dan bawah
-                        ClipPath(
-                          clipper: WaveClipper(), // Menggunakan custom clipper
+                        Align(
+                          alignment: Alignment.centerRight,
                           child: Container(
-                            color: Colors.blueGrey, // Warna latar belakang
-                            height: 400, // Tinggi dari gelombang
+                            width: 700,
+                            height: 700,
+                            decoration: BoxDecoration(
+                               shape: BoxShape.circle,
+                               color: Colors.blueGrey
+                             ),
                           ),
                         ),
-                        // Konten lainnya
+
+                        SizedBox(height: 20,),
+
+                        //circle 'compensation'
+                        Container(
+                          margin: EdgeInsets.only(top: 150, left: 100),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                             child: Row(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(top: 20),
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  height: MediaQuery.of(context).size.height*0.4,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 1,
+                                    ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Compensation',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold
+                                        ),
+                                      ),
+                                      Container(
+                                        padding: EdgeInsets.only(top: 100),
+                                        child: Text(
+                                          'Deskripsinya ...',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w500
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                             
+                                SizedBox(width: 20,),
+
+                                Container(
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  height: MediaQuery.of(context).size.height*0.5,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 1,
+                                    ),
+                                    image: DecorationImage(
+                                      image: AssetImage('assets/rapat4.jpg'),
+                                      fit: BoxFit.fill,
+                                      ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        
+                        // gelombang 1 footer
+
                       ],
                     ),
+                    
+                    // gelombang-nya atas footer
+                    CustomPaint(
+                        painter: WavePainter3(),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*0.6,
+                          width: MediaQuery.of(context).size.width*1.0,
+                          child: Row(
+                            children: [
+                              // logo arkamaya
+                              Container(
+                                padding: EdgeInsets.only(
+                                  top: MediaQuery.of(context).size.height*0.2,
+                                  left: MediaQuery.of(context).size.width*0.03
+                                  ),
+                                child: Image.asset(
+                                  'assets/logo.png',
+                                  fit: BoxFit.fill,
+                                  width: MediaQuery.of(context).size.width*0.2,
+                                  height: MediaQuery.of(context).size.height*0.1,
+                                  ),
+                              ),
 
+                              // teks dan box
+                              Container(
+                                child: Column(
+                                  children: [
+                                    Container(
+                                          padding: EdgeInsets.only(
+                                            top: MediaQuery.of(context).size.height*0.35,
+                                            left: MediaQuery.of(context).size.width*0.05,
+                                          ),
+                                      child: Text(
+                                        'Interested in what OrangeHRM can do for you?',
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600
+                                        ),
+                                      ),
+                                    ),
+                                    
+                                    SizedBox(height: 20,),
+                                    // button -> 30-day trial
+                                    Container(
+                                      width: MediaQuery.of(context).size.width*0.13,
+                                      height: MediaQuery.of(context).size.height*0.08,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
+                                      ),
+                                      child: Material(
+                                        borderRadius: BorderRadius.circular(30),
+                                        color: Colors.blueGrey.shade200,
+                                        child: InkWell(
+                                          onTap: (){},
+                                          hoverColor: Colors.blueGrey.shade400,
+                                          borderRadius: BorderRadius.circular(30),
+                                          child: Center(
+                                            child: Text(
+                                              '30-Day Free Trial',
+                                              textAlign: TextAlign.center,
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w500
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                    ),
+
+                    // gelombang dengan lengkungan dibawah
+                     Stack(
+                       children: [
+                        CustomPaint(
+                          painter: WavePainter4(),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.7,
+                            width: MediaQuery.of(context).size.width*1.0,
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 30),
+                              // color: Colors.amber,
+                              width: MediaQuery.of(context).size.width*0.8,
+                              height: MediaQuery.of(context).size.height*0.2,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    children: [
+                                      iconMethod(context, Icons.beach_access_rounded),
+                                      judulMethod('10M+'),
+                                      deskMethod('Leave Request'),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      iconMethod(context, Icons.my_location),
+                                      judulMethod('5M+'),
+                                      deskMethod('Active Users'),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      iconMethod(context, Icons.public),
+                                      judulMethod('100M+'),
+                                      deskMethod('Countries'),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      iconMethod(context, Icons.my_location),
+                                      judulMethod('500K+'),
+                                      deskMethod('Operating Vacancies'),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                       ],
+                     ),
+
+                    
                     // SizedBox(
-                    //   height: 30,
+                    //   height: 50,
                     // )
                   ],
                 ),
@@ -731,6 +1058,45 @@ class HomeView extends StackedView<HomeViewModel> {
             ],
           ),
         ]),
+      ),
+    );
+  }
+
+// deskripsi teks icon
+  Text deskMethod(String desk) {
+    return Text(
+      desk,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+      fontSize: 16
+      ),
+    );
+  }
+
+  // judul teks icon
+  Text judulMethod(String judul) {
+    return Text(
+      judul,
+      textAlign: TextAlign.center,
+      style: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold
+      ),
+    );
+  }
+
+  // icon
+  Container iconMethod(BuildContext context, IconData iconData) {
+    return Container(
+      width: MediaQuery.of(context).size.width*0.1,
+      height: MediaQuery.of(context).size.height*0.1,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.white
+      ),
+      child: Icon(
+        iconData, 
+        size:50,
       ),
     );
   }
@@ -753,42 +1119,6 @@ class HomeView extends StackedView<HomeViewModel> {
       HomeViewModel();
 }
 
-// Custom clipper untuk membuat bentuk gelombang di atas dan bawah
-class WaveClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    var path = Path();
-
-    // Gelombang bagian atas
-    var firstStartPoint = Offset(0, 60); // Titik awal gelombang
-    var firstEndPoint = Offset(size.width / 2, 10); // Titik akhir pertama
-
-    // var secondStartPoint = Offset(size.width / 2, 15); // Titik awal kedua
-    var secondEndPoint = Offset(size.width, 50); // Titik akhir kedua
-
-    path.lineTo(firstStartPoint.dx, firstStartPoint.dy);
-
-    path.quadraticBezierTo(
-      size.width / 4, 0, // Titik kontrol pertama
-      firstEndPoint.dx, firstEndPoint.dy, // Titik akhir pertama
-    );
-
-    path.quadraticBezierTo(
-      size.width * 3 / 4, 80, // Titik kontrol kedua
-      secondEndPoint.dx, secondEndPoint.dy, // Titik akhir kedua
-    );
-
-    path.lineTo(size.width, size.height); // Ke ujung kanan bawah
-    path.lineTo(0, size.height); // Ke ujung kiri bawah
-    path.close(); // Menutup path
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
-}
-
 // kelas menggunung border-radius
 class MountainClipper extends CustomClipper<Path> {
   @override
@@ -807,44 +1137,7 @@ class MountainClipper extends CustomClipper<Path> {
   }
 }
 
-// kelas autoscroll
-class AutoScrollController {
-  final ScrollController scrollController;
-  final double scrollSpeed;
-  Timer? _timer;
-
-  AutoScrollController({required this.scrollController, this.scrollSpeed = 30});
-
-  void startScrolling() {
-    _timer = Timer.periodic(Duration(milliseconds: 100), (timer) {
-      if (scrollController.hasClients) {
-        double maxScrollExtent = scrollController.position.maxScrollExtent;
-        double currentScroll = scrollController.position.pixels;
-
-        if (currentScroll >= maxScrollExtent) {
-          scrollController.jumpTo(0); // Kembali ke awal jika sudah sampai ujung
-        } else {
-          scrollController.animateTo(
-            currentScroll + scrollSpeed,
-            duration: Duration(milliseconds: 50),
-            curve: Curves.linear,
-          );
-        }
-      }
-    });
-  }
-
-  void stopScrolling() {
-    _timer?.cancel();
-  }
-
-  void dispose() {
-    _timer?.cancel();
-    scrollController.dispose();
-  }
-}
-
-// garis bergelombang
+// garis bergelombang pertama
 class WavePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -900,3 +1193,146 @@ class WavePainter extends CustomPainter {
     return false;
   }
 }
+
+//garis bergelombang atas bawah dibagian bawah kedua
+class WavePainter2 extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Warna latar belakang
+    final Paint backgroundPaint = Paint();
+    backgroundPaint.color = Colors.blueGrey; // Ganti dengan warna latar belakang yang diinginkan
+    backgroundPaint.style = PaintingStyle.fill;
+
+    // Menggambar latar belakang
+    canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), backgroundPaint);
+
+    final Paint paint = Paint();
+    paint.color = Colors.white;
+    paint.style = PaintingStyle.fill;
+
+    // Membuat path untuk gelombang atas
+    final Path topWavePath = Path();
+    topWavePath.lineTo(0, size.height * 0.05);
+    topWavePath.quadraticBezierTo(
+      size.width * 0.35, size.height * 0.3,
+      size.width * 0.5, size.height * 0.25,  // kalau height dikurangi gelombang setelahnya naik
+    );
+    topWavePath.quadraticBezierTo(
+      size.width * 0.75, size.height * 0.25, // kalau height dikurangi gelombang setelahnya naik
+      size.width, size.height * 0.1, // kalau height ditambah, gelombang ujung sebelah kanan turun
+    );
+    topWavePath.lineTo(size.width, 0);
+    topWavePath.close();
+
+    // Menggambar gelombang atas
+    canvas.drawPath(topWavePath, paint);
+
+    // Membuat path untuk gelombang bawah
+    final Path bottomWavePath = Path();
+    bottomWavePath.moveTo(0, size.height);
+    bottomWavePath.lineTo(0, size.height * 0.85);
+    bottomWavePath.quadraticBezierTo(
+      size.width * 0.25, size.height * 0.95,
+      size.width * 0.5, size.height * 0.85,
+    );
+    bottomWavePath.quadraticBezierTo(
+      size.width * 0.75, size.height * 0.75,
+      size.width, size.height * 0.85,
+    );
+    bottomWavePath.lineTo(size.width, size.height);
+    bottomWavePath.close();
+
+    // Menggambar gelombang bawah
+    canvas.drawPath(bottomWavePath, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false; // Karena gelombang tidak berubah, kita tidak perlu menggambar ulang
+  }
+}
+
+//garis bergelombang atas dibagian bawah ketiga
+class WavePainter3 extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Warna latar belakang
+    final Paint backgroundPaint = Paint();
+    backgroundPaint.color = Colors.orange.withOpacity(0.8); // Ganti dengan warna latar belakang yang diinginkan
+    backgroundPaint.style = PaintingStyle.fill;
+
+    // Menggambar latar belakang
+    canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), backgroundPaint);
+
+    final Paint paint = Paint();
+    paint.color = Colors.white;
+    paint.style = PaintingStyle.fill;
+
+    // Membuat path untuk gelombang atas
+    final Path topWavePath = Path();
+    topWavePath.lineTo(0, size.height * 0.1); // ujung gelombang sebelah kiri
+    topWavePath.quadraticBezierTo(
+      size.width * 0.35, size.height * 0.1, 
+      size.width * 0.5, size.height * 0.35,  // kalau height dikurangi gelombang setelahnya naik
+    );
+    topWavePath.quadraticBezierTo(
+      size.width * 0.75, size.height * 0.65, // kalau height dikurangi gelombang setelahnya naik
+      size.width, size.height * 0.1, // kalau height ditambah, gelombang ujung sebelah kanan turun
+    );
+    topWavePath.lineTo(size.width, 0);
+    topWavePath.close();
+
+    // Menggambar gelombang atas
+    canvas.drawPath(topWavePath, paint);
+
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false; // Karena gelombang tidak berubah, kita tidak perlu menggambar ulang
+  }
+}
+
+// garis bergelombang bawah dibagian bawah keempat
+class WavePainter4 extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    // Warna latar belakang
+    final Paint backgroundPaint = Paint();
+    backgroundPaint.color = Colors.blueGrey.withOpacity(0.8); // Ganti dengan warna latar belakang yang diinginkan
+    backgroundPaint.style = PaintingStyle.fill;
+
+    // Menggambar latar belakang
+    canvas.drawRect(Rect.fromLTRB(0, 0, size.width, size.height), backgroundPaint);
+
+    final Paint paint = Paint();
+    paint.color = Colors.white;
+    paint.style = PaintingStyle.fill;
+
+    // Membuat path untuk gelombang bawah
+    final Path bottomWavePath = Path();
+    bottomWavePath.moveTo(0, size.height);
+    bottomWavePath.lineTo(0, size.height * 0.6);
+    bottomWavePath.quadraticBezierTo(
+      size.width * 0.25, size.height * 0.3, // semakin nilai-nya dikurang, semkain kebawah
+      size.width * 0.5, size.height * 0.6, // semakin nilai-nya ditambah, semakin naik keatas
+    );
+    bottomWavePath.quadraticBezierTo(
+      size.width * 0.75, size.height * 0.85, // semakin nilai ditambah, gelombang makin kebawah
+      size.width, size.height * 0.85,
+    );
+    bottomWavePath.lineTo(size.width, size.height);
+    bottomWavePath.close();
+
+    // Menggambar gelombang bawah
+    canvas.drawPath(bottomWavePath, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return false; // Karena gelombang tidak berubah, kita tidak perlu menggambar ulang
+  }
+}
+
+
+
