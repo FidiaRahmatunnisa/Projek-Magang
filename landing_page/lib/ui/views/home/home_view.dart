@@ -9,6 +9,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stacked/stacked.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 
 import 'home_viewmodel.dart';
 
@@ -674,7 +676,7 @@ class HomeView extends StackedView<HomeViewModel> {
                         CustomPaint(
                         painter: WavePainter2(),
                         child: Container(
-                          height: MediaQuery.of(context).size.height*1.2,
+                          height: MediaQuery.of(context).size.height*1.4,
                           width: MediaQuery.of(context).size.width*1.0,
                           child: Center(
                            // row gambar dan penjelasan 2
@@ -689,11 +691,34 @@ class HomeView extends StackedView<HomeViewModel> {
                                       Flexible(
                                         flex: 1,
                                         child: Container(
+                                          padding: EdgeInsets.only(top:20),
                                           width: MediaQuery.of(context).size.width * 0.35,
                                           height: MediaQuery.of(context).size.height * 0.4,
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius: BorderRadius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: Column(
+                                              children: [
+                                                Text(
+                                                  'Culture',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                                SizedBox(height: 80,),
+                                                Text(
+                                                  'Deskripsinya ...',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
@@ -945,7 +970,7 @@ class HomeView extends StackedView<HomeViewModel> {
                                             left: MediaQuery.of(context).size.width*0.05,
                                           ),
                                       child: Text(
-                                        'Interested in what OrangeHRM can do for you?',
+                                        'Interested in what ArkamayaHRM can do for you?',
                                         style: TextStyle(
                                           fontSize: 22,
                                           color: Colors.black,
@@ -1048,10 +1073,163 @@ class HomeView extends StackedView<HomeViewModel> {
                        ],
                      ),
 
+                    // 4 buah column daftar list 
+                    Container(
+                      width: MediaQuery.of(context).size.width*1.0,
+                      height: MediaQuery.of(context).size.height*0.3,
+                      decoration: BoxDecoration(
+                        // color: Colors.amber,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          tumpukanTeks(context,
+                          'About Us',
+                          'ArkamayaHRM',
+                          'Executive Profile',
+                          'Press Release',
+                          'NewsArticles',
+                          'Articles'
+                          ),
+                          tumpukanTeks(context,
+                          'Learn More',
+                          'Open Source HRMS',
+                          'CS & Support',
+                          'Our Partners',
+                          'Testimonials',
+                          'ArkamayaHRM API'
+                          ),
+                          tumpukanTeks(context,
+                          'Policies',
+                          'Privacy Policy',
+                          'Service Privacy Policy',
+                          'General Public License',
+                          'Commercial License',
+                          'DPF Privacy Policy',
+                          ),
+                          tumpukanTeks(context,
+                          'Contact Us',
+                          'USA (HQ) +1-914-458-4254',
+                          'Europe +44 33 3303 1144',
+                          'APAC +44 33 3303 1144',
+                          'Global Support +1-914-908-4886',
+                          'Our Offices',
+                          ),
+                        ],
+                      ),
+                    ),
                     
-                    // SizedBox(
-                    //   height: 50,
-                    // )
+                    SizedBox(height: 20,),
+
+                    // box footer
+                    Container(
+                      width: MediaQuery.of(context).size.width*0.81,
+                      height: MediaQuery.of(context).size.height*0.08,
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(40)
+                      ),
+                      child: Row(
+                        children: [
+                          Flexible(
+                            flex: 3,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  width: MediaQuery.of(context).size.width*0.06,
+                                  height: MediaQuery.of(context).size.height*0.06,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    shape: BoxShape.circle
+                                  ),
+                                ),
+
+                                Text(
+                                  'Arkamaya Inc. © 2024 All Rights Reserved.',
+                                  style: TextStyle(
+                                    color: Colors.white
+                                  ),
+
+                                ),
+                              ],
+                            ),
+                            ),
+                          Flexible(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  //box putih yang sebenarnya kek medali
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    width: MediaQuery.of(context).size.width*0.035,
+                                    height: MediaQuery.of(context).size.height*0.05,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
+                                  //garis putih tegak
+                                  Container(
+                                    width: MediaQuery.of(context).size.width*0.01,
+                                    height: MediaQuery.of(context).size.height*0.06,
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        right: BorderSide(
+                                          color: Colors.white,
+                                          width: 3
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly, // Membagi jarak secara merata antar ikon
+                                      children: [
+                                        // Facebook
+                                        Container(
+                                          margin: EdgeInsets.only(left: 10),
+                                          width: MediaQuery.of(context).size.width * 0.05,
+                                          height: MediaQuery.of(context).size.height * 0.05,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.facebook,
+                                            color: Colors.white,
+                                            size: 35.0,
+                                          ),
+                                        ),
+                                        // LinkedIn
+                                        Container(
+                                          width: MediaQuery.of(context).size.width * 0.05,
+                                          height: MediaQuery.of(context).size.height * 0.05,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.linkedin,
+                                            color: Colors.white,
+                                            size: 35.0,
+                                          ),
+                                        ),
+                                        // YouTube
+                                        Container(
+                                          width: MediaQuery.of(context).size.width * 0.05,
+                                          height: MediaQuery.of(context).size.height * 0.05,
+                                          child: FaIcon(
+                                            FontAwesomeIcons.youtube,
+                                            color: Colors.white,
+                                            size: 35.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    
+                    SizedBox(
+                      height: 30,
+                    )
                   ],
                 ),
               ),
@@ -1060,6 +1238,68 @@ class HomeView extends StackedView<HomeViewModel> {
         ]),
       ),
     );
+  }
+
+  // method untuk teks link footer 
+  Column tumpukanTeks(BuildContext context, String judul, String t1,String t2, String t3, String t4, String t5) {
+    return Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+               children: [
+                  Container(
+                     width: MediaQuery.of(context).size.width*0.08,
+                     height: MediaQuery.of(context).size.height*0.05,
+                     decoration: BoxDecoration(
+                    // color: Colors.blue,
+                      border: Border(
+                      bottom: BorderSide(
+                      color: Colors.orange,
+                      width: 3
+                      )
+                    ),
+                   ),
+                child: Center(
+                  child: Text(
+                    judul,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700
+                   ),
+                 ),
+               ),
+             ),
+            Text(
+              t1,
+              style: TextStyle(
+                fontSize: 15,
+              ),
+            ),
+            Text(
+              t2,
+              style: TextStyle(
+                fontSize: 15
+              ),
+            ),
+            Text(
+              t3,
+              style: TextStyle(
+                fontSize: 15
+              ),
+              ),
+            Text(
+              t4,
+              style: TextStyle(
+                fontSize: 15
+            ),
+            ),
+            Text(
+              t5,
+              style: TextStyle(
+                fontSize: 15
+              ),
+              ),
+          ],
+         );
   }
 
 // deskripsi teks icon
@@ -1212,14 +1452,14 @@ class WavePainter2 extends CustomPainter {
 
     // Membuat path untuk gelombang atas
     final Path topWavePath = Path();
-    topWavePath.lineTo(0, size.height * 0.05);
+    topWavePath.lineTo(0, size.height * 0.01);
     topWavePath.quadraticBezierTo(
-      size.width * 0.35, size.height * 0.3,
-      size.width * 0.5, size.height * 0.25,  // kalau height dikurangi gelombang setelahnya naik
+      size.width * 0.35, size.height * 0.12,
+      size.width * 0.5, size.height * 0.15,  // kalau height dikurangi gelombang setelahnya naik
     );
     topWavePath.quadraticBezierTo(
-      size.width * 0.75, size.height * 0.25, // kalau height dikurangi gelombang setelahnya naik
-      size.width, size.height * 0.1, // kalau height ditambah, gelombang ujung sebelah kanan turun
+      size.width * 0.75, size.height * 0.2, // kalau height dikurangi gelombang setelahnya naik
+      size.width, size.height * 0.2, // kalau height ditambah, gelombang ujung sebelah kanan turun
     );
     topWavePath.lineTo(size.width, 0);
     topWavePath.close();
@@ -1230,14 +1470,14 @@ class WavePainter2 extends CustomPainter {
     // Membuat path untuk gelombang bawah
     final Path bottomWavePath = Path();
     bottomWavePath.moveTo(0, size.height);
-    bottomWavePath.lineTo(0, size.height * 0.85);
+    bottomWavePath.lineTo(0, size.height * 0.9);
     bottomWavePath.quadraticBezierTo(
       size.width * 0.25, size.height * 0.95,
       size.width * 0.5, size.height * 0.85,
     );
     bottomWavePath.quadraticBezierTo(
       size.width * 0.75, size.height * 0.75,
-      size.width, size.height * 0.85,
+      size.width, size.height * 0.75,
     );
     bottomWavePath.lineTo(size.width, size.height);
     bottomWavePath.close();
