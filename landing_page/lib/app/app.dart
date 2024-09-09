@@ -1,7 +1,7 @@
 import 'package:landing_page/ui/bottom_sheets/notice/notice_sheet.dart';
-import 'package:landing_page/ui/dialogs/info_alert/info_alert_dialog.dart';
-import 'package:landing_page/ui/views/home/home_view.dart';
-import 'package:landing_page/ui/views/startup/startup_view.dart';
+import 'package:landing_page/modules/landing_page/dialogs/info_alert/info_alert_dialog.dart';
+import 'package:landing_page/modules/landing_page/views/main.dart';
+// import 'package:landing_page/ui/views/startup/startup_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 // @stacked-import
@@ -9,7 +9,7 @@ import 'package:stacked_services/stacked_services.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: HomeView),
-    MaterialRoute(page: StartupView),
+    // MaterialRoute(page: StartupView),
     // @stacked-route
   ],
   dependencies: [
