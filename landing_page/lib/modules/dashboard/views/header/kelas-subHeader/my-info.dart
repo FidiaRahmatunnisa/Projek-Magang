@@ -1,0 +1,22 @@
+import 'package:flutter/material.dart';
+
+class MyInfo extends StatefulWidget {
+  const MyInfo({super.key});
+
+  @override
+  State<MyInfo> createState() => _MyInfoState();
+}
+
+class _MyInfoState extends State<MyInfo> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My Info'),
+      ),
+      body: Center(
+        child: Text('My Info'),
+      ),
+    );
+  }
+}

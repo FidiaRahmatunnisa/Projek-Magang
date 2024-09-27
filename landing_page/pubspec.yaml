@@ -12,6 +12,7 @@ dependencies:
   stacked: ^3.4.0
   stacked_services: ^1.1.0
   font_awesome_flutter: ^10.4.0 # Versi terbaru saat ini
+  fl_chart: ^0.55.1
 
 dev_dependencies:
   build_runner: ^2.4.5
@@ -25,6 +26,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    
   fonts:
     - family: Poppins
       fonts:

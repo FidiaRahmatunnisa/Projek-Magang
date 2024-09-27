@@ -7,7 +7,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:landing_page/modules/landing_page/views/appbar.dart';
+import 'package:landing_page/modules/landing_page/views/navbar/appbar.dart';
 import 'package:landing_page/modules/landing_page/views/circle/half_circle.dart';
 import 'package:landing_page/modules/landing_page/views/circle/second_circle.dart';
 import 'package:landing_page/modules/landing_page/views/circle/third_circle.dart';
@@ -50,15 +50,16 @@ class HomeView extends StackedView<HomeViewModel> {
                           FirstView(),
                           CustomPaint(
                             // posisi (HEIGHT) garis bergelombang dari ukuran halaman
-                            size: Size(double.infinity, 70),
+                            size: Size(double.infinity, MediaQuery.of(context).size.height*0.1),
                             painter: WavePainter(), // first_wave
                           ),
 
-                      SizedBox(height: 200,),
+                      SizedBox(height: MediaQuery.of(context).size.height*0.25),
 
                           // teks 'we have ..'
                           Text(
                             'We have 5 million + active users worlwide',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
@@ -71,6 +72,7 @@ class HomeView extends StackedView<HomeViewModel> {
                           // teks 'here are'
                           Text(
                             'Here are some of our clients',
+                            textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
